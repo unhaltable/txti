@@ -1,3 +1,4 @@
+from api.nextbus import get_bus_prediction
 from api.weather import weather_current
 from flask import Flask, request, render_template, redirect
 import pymongo
@@ -45,17 +46,16 @@ def txti():
 
 
 def get_response(query):
-    f = parser.Formula("bustime", "Next bus for {{route}} at {{intersection}}", get_bus_prediction)
+    f = parser.Formula("bustime", "Next bus for {{route}} {{direction}} at {{intersection}}", get_bus_prediction)
     p = parser.Parser()
     p.addFormula(f)
-    return p.parse("Next bus for 116 at Coronation and Lawrence")
+    return p.parse("Next bus for 116 North at Coronation and Lawrence")
 
     # TODO: change this
     return weather_current('Canada', 'Toronto')
 
 
-def get_bus_prediction(params):
-    return 'Next bus for'
+
 
 
 if __name__ == '__main__':

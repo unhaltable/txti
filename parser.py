@@ -1,11 +1,11 @@
 import re
 
-
 class Parser:
     def __init__(self):
         self.formulae = []
 
     def parse(self, input):
+        self.formulae.sort(lambda x,y: len(x) < len(y))
         for formula in self.formulae:
             mat = re.search(formula.pieces[0], input)
             if (mat != None and mat.pos == 0):
@@ -26,6 +26,9 @@ class Parser:
         return formula.f(inputs)
 
     def addFormula(self, formula):
+        for item in self.formulae:
+            if item == formula:
+                return
         self.formulae.append(formula)
 
 
@@ -39,13 +42,22 @@ class Formula:
         self.pieces = [l[i] for i in range(0, len(l), 2)]
         self.head = l[0]
 
+    def __eq__(self, other):
+        return (self.id == other.id and self.f == other.f
+                and self.pieces == other.pieces)
 
-def testfunc():
-    pass
+def testfunc(list):
+    return list
+
+
+def testfunc(l):
+    print l
 
 
 if __name__ == "__main__":
-    f = Formula("bustime", "Next bus for {{route}} at {{intersection}}", testfunc)
+    # below does not work
+    f = Formula("bustime", "Next bus for {{route}} {{direction}} at {{intersection}}", testfunc)
     p = Parser()
     p.addFormula(f)
-    p.parse("Next bus for 116 at Coronation and Lawrence")
+    result = p.parse("Next bus for 116 North at Coronation and Lawrence")
+    print(repr(result))
