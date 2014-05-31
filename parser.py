@@ -2,6 +2,21 @@ __author__ = 'jonathanwebb'
 from plex import *
 import cStringIO
 
+class TextiScanner(Scanner):
+
+    def __init__(self, lex, string):
+        list = lex[:]
+        list.append(State('param', [(Rep(Range("AZaz") | Range("09") | Str(" ")), TEXT)]))
+        stream = cStringIO.StringIO(string)
+        
+
+
+    def begin_param(self, text):
+        self.begin("param")
+
+    def end_param(self, text):
+        self.end("param")
+
 class Parser:
 
     def __init__ (self):
@@ -25,10 +40,10 @@ class Parser:
 
     def parse(self, input):
         new = self.lex[:]
-        #new.append((Rep(Range("AZaz") | Range("09") | Str(" ")), TEXT))
+        new.append(State('param', [(Rep(Range("AZaz") | Range("09") | Str(" ")), TEXT)]))
         lex = Lexicon(new)
-        s = cStringIO.StringIO(input)
-        scanner = Scanner(lex, s)
+
+        scanner = TextiScanner(lex, input)
 
         id = None
         inputs = []
