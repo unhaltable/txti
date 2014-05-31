@@ -1,15 +1,4 @@
-from __future__ import unicode_literals, print_function
-from pypeg2 import *
-
-class _Parameter(str):
-    grammar = re.compile(r"[\w\s]+")
-
-class _Structure(str):
-    grammar = re.compile(r"[\w\s]+")
-
-class _Formula(List):
-    grammar = maybe_some(_Structure, "{{", _Parameter, "}}")
-
+import re
 
 class Parser:
 
@@ -23,8 +12,14 @@ class Formula:
 
     def __init__(self, id, formulae, f):
         self.id  = id
-        self.f
+        self.f = f
+        l = re.split(r"{{|}}", formulae)
+        while '' in l:
+            l.remove('')
+        print l
 
+def testfunc():
+    pass
 
 if __name__ == "__main__":
-    f = parse("Next bus for {{route}} at {{intersection}}", _Formula)
+    f = Formula("bustime", "Next bus for {{route}} at {{intersection}}", testfunc)
