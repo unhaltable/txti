@@ -22,7 +22,7 @@ txti.users {
 
 txti.api_fakeapi {
     user: <reference to user in txti_users,
-    fakeapi_username
+    fakeapi_openid
     password_enc
 }
 
@@ -45,29 +45,28 @@ class db_session():
 
         return usr[u'_id']
 
-    def uid_by_name(self, username):
+    def uid_by_name(self, openid):
         db = self.mongoclient.txti
-        return db.users.find({"username": username})[u'_id']
+        return db.users.find({"openid": openid})[u'_id']
 
     
     """
-    register a new user, and return a reference to that username (the _id field)
+    register a new user, and return a reference to that openid (the _id field)
     """
-    def register_user(self, username, password_enc, phone_numbers):
+    def register_user(self, openid, phone_numbers):
         db = self.mongoclient.txti
 
-        #check if a user with that phone number or username exists
+        #check if a user with that phone number or openid exists
         if( 
             any(
                 [ db.users.find({"phone_numbers": n}).count()>0
                     for n in phone_numbers])):
             raise Exception("one of those numbers is in use")
-        elif(db.users.find({"username": username}).count()>0):
-            raise Exception("username in use")
+        elif(db.users.find({"openid": openid}).count()>0):
+            raise Exception("openid in use")
 
         client = {
-            "username" : username,
-            "password_enc" : password_enc,
+            "openid" : openid,
             "phone_numbers" : phone_numbers,
             "apis": {}
         }
@@ -137,8 +136,8 @@ class db_session():
     #  Etc Helpers  #
     #################
 
-    def location_from_number():
-        pass
+    def close(self):
+        self.mongoclient.disconnect()
 
 #helper method for me
 def joindict(*dicts):
@@ -148,11 +147,11 @@ if __name__ == "__main__":
     session = db_session()
     try:
         uid = session.register_user(
-            "cooluser!!",
-            "this is the encoded password",
-            ["2153611301236"]
+            "dis my openid",
+            ["2153611306"]
         )
     except (Exception) as ex:
+        print ex.message
         uid = session.uid_by_number("2153611306")
 
 
