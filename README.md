@@ -1,2 +1,4 @@
-Unnamed-Battlehack-Project
+txti
 ==========================
+
+A customizable SMS service.
