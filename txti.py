@@ -6,7 +6,7 @@ from parser import parse
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/api', methods=['GET', 'POST'])
 def txti():
     # Get parameters from request
     from_number = request.values.get('From', None)
