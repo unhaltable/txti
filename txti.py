@@ -1,12 +1,13 @@
+from api.nextbus import get_bus_prediction
 from api.weather import weather_current
 from flask import Flask, request
 import twilio.twiml
 
-from parser import parse
+import parser
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/api', methods=['GET', 'POST'])
 def txti():
     # Get parameters from request
     from_number = request.values.get('From', None)
@@ -22,11 +23,17 @@ def txti():
 
 
 def get_response(query):
-    request_parts = parse(query)
-    request_type = request_parts[0]
+    f = parser.Formula("bustime", "Next bus for {{route}} {{direction}} at {{intersection}}", get_bus_prediction)
+    p = parser.Parser()
+    p.addFormula(f)
+    return p.parse("Next bus for 116 North at Coronation and Lawrence")
 
-    # TODO: Instead of returning the raw query, call a function to get data corresponding to the request type
+    # TODO: change this
     return weather_current('Canada', 'Toronto')
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
