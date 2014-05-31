@@ -3,6 +3,8 @@ txti
 
 A customizable SMS service.
 
+Check out the [official website](http://unhaltable.com/).
+
 ### Deploying
 
 Add the heroku remote:
