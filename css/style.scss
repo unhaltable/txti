@@ -1,4 +1,5 @@
 @import 'constants';
+@import 'mixins';
 
 *,
 *::before,
@@ -12,18 +13,68 @@ html,
 body {
   font: 16px/18px $fonts;
   height: 100%;
+  text-align: center;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+h1 {
+  line-height: 2em;
+  font-size: 3em;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 2em;
+  font-weight: 300;
 }
 
 header {
   background: $red;
   color: #fff;
   height: 100%;
+  width: 100%;
+
+  #header-info {
+    height: 10em;
+    position: absolute;
+    top: 50%;
+    margin-top: -5em;
+    width: 100%;
+
+    h2 {
+      margin-bottom: 2.5em;
+    }
+
+    .button {
+      @include border-radius(5px);
+      @include transition(all, 0.3s);
+      border: 1px solid #fff;
+      padding: 1em 2em;
+
+      &:hover {
+        background: #fff;
+        color: $red;
+      }
+    }
+  }
+
 }
 
 section {
   background: $orange;
+  padding: 2em;
 }
 
 footer {
-  background: $yellow;
+  background: $tan;
+  padding: 4em 1em;
 }
