@@ -38,6 +38,9 @@ h3 {
   font-size: 2em;
   font-weight: 300; }
 
+h4 {
+  font-size: 1.5em; }
+
 header {
   background: #ff4e50 url(../img/hero.jpg) no-repeat;
   background-size: cover;
@@ -82,30 +85,24 @@ section {
   section h3 {
     color: #fff;
     margin-bottom: 1em; }
+  section h4 {
+    color: #fff;
+    margin-bottom: 1em; }
   section .recipe {
     width: auto; }
     section .recipe pre {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      background: #fdc08e;
+      background: #e1f5c4;
       margin: 0.5em 0;
-      padding: 0.35em 0.5em; }
+      padding: 0.35em 0.75em; }
   section #phone {
     background: url(../img/phone.png) no-repeat;
     background-size: 282px 488px;
     height: 488px;
     margin: 2em auto 0 auto;
     width: 282px; }
-    section #phone #messages {
-      height: 488px;
-      position: relative; }
-      section #phone #messages li {
-        list-style: none;
-        height: auto;
-        width: 258px;
-        position: absolute;
-        bottom: 0; }
 
 footer {
   background: #ede574;
@@ -113,3 +110,28 @@ footer {
   padding: 4em 1em; }
   footer #donate {
     margin-bottom: 1.5em; }
+  footer #disclosure {
+    font-size: 0.75em; }
+  footer p {
+    margin-top: 0.5em; }
+  footer a {
+    border-bottom: 1px dotted #777;
+    color: #000; }
+
+.paypal-button button {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  background: none !important;
+  border: 1px solid #000 !important;
+  border-radius: 5px !important;
+  color: #000 !important;
+  font: normal 1em "Raleway", "Helvetica Neue", "Helvetica" sans-serif !important;
+  text-shadow: none !important;
+  padding: 0.5em 2em !important; }
+  .paypal-button button::before, .paypal-button button::after {
+    background: none !important; }
+  .paypal-button button:hover {
+    background: #fff !important; }

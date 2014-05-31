@@ -29,20 +29,19 @@
   </header>
   <section id="learn-more">
     <h3>No Internet? No problem.</h3>
-    <h4>Use recipes</h4>
+    <h4>Available queries:</h4>
     <div class="recipe"><pre>Next bus for {{route}} at {{intersection}}</pre></div>
     <div class="recipe"><pre>Current weather in {{city}}</pre></div>
     <div class="recipe"><pre>Today's forecast for {{city}}</pre></div>
-    <div id="phone">
-      <ul id="messages">
-      </ul>
-    </div>
+    <div class="recipe"><pre>What is {{query}}</pre></div>
+    <div id="phone"></div>
   </section>
   <footer>
     <div id="donate">
       <script src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=ey.cheung@outlook.com"
         data-button="donate"
-        data-name="Donate to Unhaltable"
+        data-name="Donate"
+        data-text="Donate via PayPal"
         data-quantity="1"
         data-amount="5.00"
         data-currency="CAD"
@@ -50,7 +49,9 @@
         data-tax="0"
       ></script>
     </div>
-    <span>Created with love by Team Unhaltable at BattleHack 2014</span>
+    <p id="disclosure">Standard SMS fees apply.</p>
+    <p>Created with love by Team Unhaltable at BattleHack 2014</p>
+    <p>Also check out <a href="http://www.cryptr.ca/">Cryptr</a> and <a href="http://www.cryptr.ca/uv">Ultraviolet</a>!</p>
   </footer>
   <script src="js/script.js"></script>
 </body>
