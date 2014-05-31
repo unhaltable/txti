@@ -40,12 +40,14 @@ class Formula:
         self.head = l[0]
 
 
-def testfunc():
-    pass
+def testfunc(list):
+    return list
 
 
 if __name__ == "__main__":
-    f = Formula("bustime", "Next bus for {{route}} at {{intersection}}", testfunc)
+    # below does not work
+    f = Formula("bustime", "Next bus for {{route}} {{direction}} at {{intersection}}", testfunc)
     p = Parser()
     p.addFormula(f)
-    p.parse("Next bus for 116 at Coronation and Lawrence")
+    result = p.parse("Next bus for 116 North at Coronation and Lawrence")
+    print(repr(result))
