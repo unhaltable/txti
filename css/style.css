@@ -1,1 +1,96 @@
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html,body{font:16px/18px "Raleway",sans-serif;height:100%;text-align:center}a{color:#fff;text-decoration:none}h1{line-height:2em;font-size:3em;font-weight:300}h2{font-size:1.5em;font-weight:300}h3{font-size:2em;font-weight:300}header{background:#ff4e50;color:#fff;height:100%;width:100%}header #header-info{height:10em;position:absolute;top:50%;margin-top:-5em;width:100%}header #header-info h2{margin-bottom:2.5em}header #header-info .button{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-transition:all 0.3s ease 0s;-moz-transition:all 0.3s ease 0s;-ms-transition:all 0.3s ease 0s;-o-transition:all 0.3s ease 0s;transition:all 0.3s ease 0s;border:1px solid #fff;padding:1em 2em}header #header-info .button:hover{background:#fff;color:#ff4e50}section{background:#fc913a;padding:2em}footer{background:#ede574;padding:4em 1em}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html,
+body {
+  font: 16px/18px "Raleway", "Helvetica Neue", "Helvetica" sans-serif;
+  height: 100%;
+  text-align: center; }
+
+a {
+  color: #fff;
+  text-decoration: none; }
+
+pre {
+  display: inline-block;
+  font: 14px/16px "Source Code Pro", "Consolas", "Courier New", monospace;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+h1 {
+  line-height: 2em;
+  font-size: 3em;
+  font-weight: 300; }
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 300; }
+
+h3 {
+  line-height: 2em;
+  font-size: 2em;
+  font-weight: 300; }
+
+header {
+  background: #ff4e50 url(../img/hero.jpg) no-repeat;
+  background-size: cover;
+  color: #fff;
+  height: 100%;
+  width: 100%; }
+  header::before {
+    background-color: rgba(255, 78, 80, 0.65);
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%; }
+  header #header-info {
+    height: 10em;
+    position: absolute;
+    top: 50%;
+    margin-top: -5em;
+    width: 100%; }
+    header #header-info h2 {
+      margin-bottom: 2.5em; }
+    header #header-info .button {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -ms-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
+      border: 1px solid #fff;
+      padding: 1em 2em; }
+      header #header-info .button:hover {
+        background: #fff;
+        color: #ff4e50; }
+
+section {
+  background: #fc913a;
+  padding: 2em; }
+  section h3 {
+    color: #fff; }
+  section .recipe {
+    width: auto; }
+    section .recipe pre {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background: #fdc08e;
+      margin: 0.5em 0;
+      padding: 0.35em 0.5em; }
+
+footer {
+  background: #ede574;
+  font-size: 0.9em;
+  padding: 4em 1em; }
