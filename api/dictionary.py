@@ -21,4 +21,4 @@ def getDefinition(word):
 
 
 if __name__ == "__main__":
-    defineWord("league")
+    getDefinition("league")
