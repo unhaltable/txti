@@ -1,0 +1,43 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin background-gradient($start, $end) {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($start), to($end));
+  background: -webkit-linear-gradient(top, $start, $end);
+  background: -moz-linear-gradient(top, $start, $end);
+  background: -o-linear-gradient(top, $start, $end);
+  background: linear-gradient(top, $start, $end);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start', endColorstr='$end');
+  background-color: $start;
+}
+
+@mixin transition($property, $duration, $timing-function:"ease", $delay:"0s") {
+  -webkit-transition: $property $duration #{$timing-function} #{$delay};
+     -moz-transition: $property $duration #{$timing-function} #{$delay};
+      -ms-transition: $property $duration #{$timing-function} #{$delay};
+       -o-transition: $property $duration #{$timing-function} #{$delay};
+          transition: $property $duration #{$timing-function} #{$delay};
+}
+
+$breakpoints: (
+  'tiny':   ( max-width:  360px ),
+  'small':  ( max-width:  500px ),
+  'medium': ( max-width:  992px ),
+  'large':  ( max-width: 1200px )
+);
+
+@mixin breakpoint($name) {
+  @if map-has-key($breakpoints, $name) {
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+  @else {
+    @media ($name) {
+      @content;
+    }
+  }
+}

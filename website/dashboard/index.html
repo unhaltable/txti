@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>txti: Dashboard</title>
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Raleway:400,300,500,600'>
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Source+Code+Pro'>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <!--[if lt IE 9]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+  <![endif]-->
+  <script src="js/paypal-button.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+</head>
+<body class="dashboard">
+  <header>
+    <h1>txti dashboard</h1>
+    <div id="menu">
+      <span id="user">Username</span>
+      <a href="/">Log out</a>
+    </div>
+  </header>
+  <section id="dash">
+    <section>
+      <section id="paypal">
+        <h4>PayPal integration</h4>
+        <span id="login"></span>
+      </section>
+
+      <section>
+        <h4>Something</h4>
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h4>Your info</h4>
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+      </section>
+
+      <section>
+        <h4>Whatever</h4>
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username">
+      </section>
+    </section>
+  </section>
+  <script src="js/script.js"></script>
+  <script src="https://www.paypalobjects.com/js/external/api.js"></script>
+  <script>
+  paypal.use( ["login"], function(login) {
+    login.render ({
+      "appid": "ASADDBDt4pU4eFXwJq16hXlXl5keoZ7VbJyasjinFsdFnILS_4MkMhDcUqtB",
+      "authend": "sandbox",
+      "scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
+      "containerid": "login",
+      "locale": "en-us",
+      "returnurl": "http://www.unhaltable.com/"
+    });
+  });
+  </script>
+</body>
+</html>
