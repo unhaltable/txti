@@ -1,10 +1,33 @@
 from api.weather import weather_current
-from flask import Flask, request
+from flask import Flask, request, render_template, redirect
+import pymongo
 import twilio.twiml
 
 import parser
 
 app = Flask(__name__)
+
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    #chck cookie exists
+    if not hasattr(request, 'txtisessionkey'):
+        return app.make_response(redirect("/login")) 
+    else:
+        client = pymongo.MongoClient(mongoaddr, mongoport)
+        user = login.is_key_valid(request.txtisessionkey)
+        if user:
+            #TODO serve the dashboard
+            return "yay you're logged in"
+        else:
+            return app.make_response(redirect("/login"))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if len(request.POST) == 0:
+        return app.render_template('/login.html')
+    else:
+        pass
+
 
 @app.route('/api', methods=['GET', 'POST'])
 def txti():
