@@ -6,6 +6,7 @@ class Parser:
         self.formulae = []
 
     def parse(self, input):
+        self.formulae.sort(lambda x,y: len(x) < len(y))
         for formula in self.formulae:
             mat = re.search(formula.pieces[0], input)
             if (mat != None and mat.pos == 0):
@@ -40,8 +41,8 @@ class Formula:
         self.head = l[0]
 
 
-def testfunc():
-    pass
+def testfunc(l):
+    print l
 
 
 if __name__ == "__main__":
