@@ -56,3 +56,5 @@ docs/_build/
 .idea
 /venv
 .python-version
+
+Thumbs.db
