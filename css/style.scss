@@ -181,3 +181,85 @@ footer {
     background: #fff !important;
   }
 }
+
+.login {
+  header {
+    background: $red;
+    height: 6em;
+    position: fixed;
+    text-align: left;
+    top: 0;
+
+    &::before {
+      height: 0;
+      width: 0;
+    }
+
+    h1 {
+      margin-left: 1em;
+    }
+  }
+
+  #login-form {
+    height: 100%;
+    padding-top: 6em;
+
+    #form {
+      margin: 0 auto;
+      width: 75%;
+
+      h3 {
+        border-bottom: 1px solid #fff;
+        padding-bottom: 0.5em;
+      }
+
+      input,
+      button {
+        font-family: $fonts;
+      }
+
+      input {
+        @include border-radius(5px);
+        @include transition(all, 0.3s);
+        background: $cream;
+        border: 1px solid #fff;
+        font-size: 1.2em;
+        margin-bottom: 1em;
+        padding: 0.5em;
+        width: 100%;
+
+        &:focus {
+          background: #fff;
+        }
+      }
+
+      button {
+        @include border-radius(5px);
+        @include transition(all, 0.3s);
+        background: transparent;
+        border: 1px solid #fff;
+        cursor: pointer;
+        color: #fff;
+        padding: 1em 2em;
+
+        &:hover,
+        &:focus {
+          background: #fff;
+          color: $orange;
+        }
+      }
+    }
+
+    section {
+      display: inline-block;
+      text-align: left;
+      vertical-align: top;
+      width: 50%;
+
+      @include breakpoint(medium) {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
