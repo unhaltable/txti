@@ -40,11 +40,14 @@ class Formula:
         while '' in l:
             l.remove('')
         self.pieces = [l[i] for i in range(0, len(l), 2)]
+        self.head = l[0]
 
     def __eq__(self, other):
         return (self.id == other.id and self.f == other.f
                 and self.pieces == other.pieces)
 
+def testfunc(list):
+    return list
 
 
 def testfunc(l):
@@ -52,7 +55,9 @@ def testfunc(l):
 
 
 if __name__ == "__main__":
-    f = Formula("bustime", "Next bus for {{route}} at {{intersection}}", testfunc)
+    # below does not work
+    f = Formula("bustime", "Next bus for {{route}} {{direction}} at {{intersection}}", testfunc)
     p = Parser()
     p.addFormula(f)
-    p.parse("Next bus for 116 at Coronation and Lawrence")
+    result = p.parse("Next bus for 116 North at Coronation and Lawrence")
+    print(repr(result))
