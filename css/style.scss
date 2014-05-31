@@ -1,0 +1,29 @@
+@import 'constants';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font: 16px/18px $fonts;
+  height: 100%;
+}
+
+header {
+  background: $red;
+  color: #fff;
+  height: 100%;
+}
+
+section {
+  background: $orange;
+}
+
+footer {
+  background: $yellow;
+}
