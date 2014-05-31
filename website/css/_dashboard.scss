@@ -1,0 +1,60 @@
+.dashboard {
+  background: $cream;
+
+  button {
+    background: $red;
+  }
+
+  header {
+    background: $red;
+    height: 6em;
+    text-align: left;
+
+    &::before {
+      height: 0;
+      width: 0;
+    }
+
+    h1 {
+      margin-left: 1em;
+    }
+
+    #menu {
+      top: 3em;
+
+      #user {
+        margin-right: 2em;
+      }
+    }
+  }
+
+  #dash {
+    background: $cream;
+    padding: 1em;
+
+    &> section {
+      display: inline-block;
+      text-align: left;
+      vertical-align: top;
+      width: 40%;
+
+      @include breakpoint(medium) {
+        display: block;
+        width: 100%;
+      }
+
+      section {
+        @include border-radius(5px);
+        background: #fff;
+        border: 1px solid $orange;
+        margin: 0 0.5em 1em 0.5em;
+        padding: 1.5em;
+      }
+
+      h4 {
+        font-weight: 300;
+        line-height: 2em;
+      }
+    }
+  }
+}
