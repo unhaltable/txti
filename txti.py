@@ -1,3 +1,4 @@
+from api.weather import weather_current
 from flask import Flask, request
 import twilio.twiml
 
@@ -16,7 +17,7 @@ def txti():
 
     # Create the response to be sent back to the user
     resp = twilio.twiml.Response()
-    resp.message(body)
+    resp.message(response)
     return str(resp)
 
 
@@ -25,7 +26,7 @@ def get_response(query):
     request_type = request_parts[0]
 
     # TODO: Instead of returning the raw query, call a function to get data corresponding to the request type
-    return query
+    return weather_current('Canada', 'Toronto')
 
 if __name__ == '__main__':
     app.run(debug=True)
