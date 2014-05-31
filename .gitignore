@@ -56,4 +56,6 @@ docs/_build/
 .idea
 /venv
 .python-version
+
 txti.paw
+Thumbs.db
