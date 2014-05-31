@@ -16,6 +16,7 @@
   <!--[if lt IE 9]>
     <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
   <![endif]-->
+  <script src="js/paypal-button.min.js"></script>
   <script src="js/jquery.min.js"></script>
 </head>
 <body>
@@ -32,8 +33,23 @@
     <div class="recipe"><pre>Next bus for {{route}} at {{intersection}}</pre></div>
     <div class="recipe"><pre>Current weather in {{city}}</pre></div>
     <div class="recipe"><pre>Today's forecast for {{city}}</pre></div>
+    <div id="phone">
+      <ul id="messages">
+      </ul>
+    </div>
   </section>
   <footer>
+    <div id="donate">
+      <script src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=ey.cheung@outlook.com"
+        data-button="donate"
+        data-name="Donate to Unhaltable"
+        data-quantity="1"
+        data-amount="5.00"
+        data-currency="CAD"
+        data-shipping="0"
+        data-tax="0"
+      ></script>
+    </div>
     <span>Created with love by Team Unhaltable at BattleHack 2014</span>
   </footer>
   <script src="js/script.js"></script>

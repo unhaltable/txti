@@ -34,7 +34,7 @@ h2 {
   font-weight: 300; }
 
 h3 {
-  line-height: 2em;
+  line-height: 1.2em;
   font-size: 2em;
   font-weight: 300; }
 
@@ -53,13 +53,13 @@ header {
     top: 0;
     width: 100%; }
   header #header-info {
-    height: 10em;
+    height: 12em;
     position: absolute;
     top: 50%;
-    margin-top: -5em;
+    margin-top: -6em;
     width: 100%; }
     header #header-info h2 {
-      margin-bottom: 2.5em; }
+      margin-bottom: 3.5em; }
     header #header-info .button {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -70,6 +70,7 @@ header {
       -o-transition: all 0.3s ease 0s;
       transition: all 0.3s ease 0s;
       border: 1px solid #fff;
+      cursor: pointer;
       padding: 1em 2em; }
       header #header-info .button:hover {
         background: #fff;
@@ -77,9 +78,10 @@ header {
 
 section {
   background: #fc913a;
-  padding: 2em; }
+  padding: 2em 2em 0; }
   section h3 {
-    color: #fff; }
+    color: #fff;
+    margin-bottom: 1em; }
   section .recipe {
     width: auto; }
     section .recipe pre {
@@ -89,8 +91,25 @@ section {
       background: #fdc08e;
       margin: 0.5em 0;
       padding: 0.35em 0.5em; }
+  section #phone {
+    background: url(../img/phone.png) no-repeat;
+    background-size: 282px 488px;
+    height: 488px;
+    margin: 2em auto 0 auto;
+    width: 282px; }
+    section #phone #messages {
+      height: 488px;
+      position: relative; }
+      section #phone #messages li {
+        list-style: none;
+        height: auto;
+        width: 258px;
+        position: absolute;
+        bottom: 0; }
 
 footer {
   background: #ede574;
   font-size: 0.9em;
   padding: 4em 1em; }
+  footer #donate {
+    margin-bottom: 1.5em; }

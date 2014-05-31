@@ -43,7 +43,7 @@ h2 {
 }
 
 h3 {
-  line-height: 2em;
+  line-height: 1.2em;
   font-size: 2em;
   font-weight: 300;
 }
@@ -66,20 +66,21 @@ header {
   }
 
   #header-info {
-    height: 10em;
+    height: 12em;
     position: absolute;
     top: 50%;
-    margin-top: -5em;
+    margin-top: -6em;
     width: 100%;
 
     h2 {
-      margin-bottom: 2.5em;
+      margin-bottom: 3.5em;
     }
 
     .button {
       @include border-radius(5px);
       @include transition(all, 0.3s);
       border: 1px solid #fff;
+      cursor: pointer;
       padding: 1em 2em;
 
       &:hover {
@@ -93,10 +94,11 @@ header {
 
 section {
   background: $orange;
-  padding: 2em;
+  padding: 2em 2em 0;
 
   h3 {
     color: #fff;
+    margin-bottom: 1em;
   }
 
   .recipe {
@@ -109,10 +111,35 @@ section {
       padding: 0.35em 0.5em;
     }
   }
+
+  #phone {
+    background: url(../img/phone.png) no-repeat;
+    background-size: 282px 488px;
+    height: 488px;
+    margin: 2em auto 0 auto;
+    width: 282px;
+
+    #messages {
+      height: 488px;
+      position: relative;
+
+      li {
+        list-style: none;
+        height: auto;
+        width: 258px;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
 }
 
 footer {
   background: $tan;
   font-size: 0.9em;
   padding: 4em 1em;
+
+  #donate {
+    margin-bottom: 1.5em;
+  }
 }
