@@ -1,6 +1,5 @@
 import re
 
-
 class Parser:
     def __init__(self):
         self.formulae = []
@@ -27,6 +26,9 @@ class Parser:
         return formula.f(inputs)
 
     def addFormula(self, formula):
+        for item in self.formulae:
+            if item == formula:
+                return
         self.formulae.append(formula)
 
 
@@ -38,7 +40,11 @@ class Formula:
         while '' in l:
             l.remove('')
         self.pieces = [l[i] for i in range(0, len(l), 2)]
-        self.head = l[0]
+
+    def __eq__(self, other):
+        return (self.id == other.id and self.f == other.f
+                and self.pieces == other.pieces)
+
 
 
 def testfunc(l):
