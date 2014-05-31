@@ -21,6 +21,9 @@
 </head>
 <body>
   <header>
+    <div id="menu">
+      <a href="/login.html">Login/Register</a>
+    </div>
     <div id="header-info">
       <h1>txti</h1>
       <h2>Information without the Internet</h2>
@@ -28,12 +31,14 @@
     </div>
   </header>
   <section id="learn-more">
+    <span id="login"></span>
     <h3>No Internet? No problem.</h3>
     <h4>Available queries:</h4>
     <div class="recipe"><pre>Next bus for {{route}} at {{intersection}}</pre></div>
     <div class="recipe"><pre>Current weather in {{city}}</pre></div>
     <div class="recipe"><pre>Today's forecast for {{city}}</pre></div>
     <div class="recipe"><pre>What is {{query}}</pre></div>
+    <div class="recipe"><pre>Send ${{amount}} to {{e-mail address}}</pre></div>
     <div id="phone"></div>
   </section>
   <footer>
@@ -54,5 +59,18 @@
     <p>Also check out <a href="http://www.cryptr.ca/">Cryptr</a> and <a href="http://www.cryptr.ca/uv">Ultraviolet</a>!</p>
   </footer>
   <script src="js/script.js"></script>
+  <script src="https://www.paypalobjects.com/js/external/api.js"></script>
+  <script>
+  paypal.use( ["login"], function(login) {
+    login.render ({
+      "appid": "ASADDBDt4pU4eFXwJq16hXlXl5keoZ7VbJyasjinFsdFnILS_4MkMhDcUqtB",
+      "authend": "sandbox",
+      "scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
+      "containerid": "login",
+      "locale": "en-us",
+      "returnurl": "http://www.unhaltable.com/"
+    });
+  });
+  </script>
 </body>
 </html>

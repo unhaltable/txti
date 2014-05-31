@@ -55,6 +55,12 @@ header {
     position: absolute;
     top: 0;
     width: 100%; }
+  header #menu {
+    font-size: 0.8em;
+    position: absolute;
+    right: 1em;
+    text-transform: uppercase;
+    top: 1em; }
   header #header-info {
     height: 12em;
     position: absolute;
