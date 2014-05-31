@@ -218,9 +218,16 @@ section#learn-more {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -ms-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
       background: #e1f5c4;
       margin: 0.5em 0;
       padding: 0.35em 0.75em; }
+      section#learn-more .recipe pre:hover {
+        background: #fff; }
   section#learn-more #phone {
     background: url(../img/phone.png) no-repeat;
     background-size: 282px 488px;

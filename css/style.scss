@@ -160,9 +160,14 @@ section#learn-more {
 
     pre {
       @include border-radius(5px);
+      @include transition(all, 0.3s);
       background: $cream;
       margin: 0.5em 0;
       padding: 0.35em 0.75em;
+
+      &:hover {
+        background: #fff;
+      }
     }
   }
 
