@@ -1,110 +1,51 @@
-__author__ = 'jonathanwebb'
-from plex import *
-import cStringIO
+import re
+
 
 class Parser:
-
-    def __init__ (self):
-        self.formulae = {} ## dict of string to Formula objects
-        self.lex = [] ## list of lexical rules
-
-
-    def addFormula(self, formula):
-        if (self.__checkIfIDUsed(formula.id)):
-            raise DuplicateIDException
-        else:
-            self.formulae[formula.id] = formula
-            for rule in formula.rules:
-                self.lex.append(rule)
-
-    def __checkIfIDUsed(self, id):
-        for key in self.formulae.keys():
-            if id == key:
-                return True
-        return False
+    def __init__(self):
+        self.formulae = []
 
     def parse(self, input):
-        new = self.lex[:]
-        #new.append((Rep(Range("AZaz") | Range("09") | Str(" ")), TEXT))
-        lex = Lexicon(new)
-        s = cStringIO.StringIO(input)
-        scanner = Scanner(lex, s)
+        for formula in self.formulae:
+            mat = re.search(formula.pieces[0], input)
+            if (mat != None and mat.pos == 0):
+                return self.analyze(formula, input)
 
-        id = None
+
+    def analyze(self, formula, input):
         inputs = []
-        while 1:
-            token = scanner.read()
-            if token[1] is '':
-                break
-            else:
-                if (token[0][:3] == 'id_'):
-                    if (not id):
-                        id = token[0][3:]
-                    elif (id and id != token[0][3:]):
-                        raise Exception
+        i = 0
+        while i < len(formula.pieces) - 1:
+            begin = re.search(formula.pieces[i], input)
+            end = re.search(formula.pieces[i + 1], input)
+            num1 = begin.end(0)
+            num2 = end.start(0)
+            inputs.append(input[num1:num2])
+            i += 1
+        inputs.append(input[end.end():])
+        return formula.f(inputs)
 
-                else:
-                    inputs.append(token[0])
+    def addFormula(self, formula):
+        self.formulae.append(formula)
 
 
 class Formula:
-
     def __init__(self, id, formula, f):
-        '''
-        :param id: str
-        :param formula: str
-        :param f: a function that takes a list of strings
-        :return: None
-        '''
-
-        self.func = f
         self.id = id
+        self.f = f
+        l = re.split(r"{{|}}", formula)
+        while '' in l:
+            l.remove('')
+        self.pieces = [l[i] for i in range(0, len(l), 2)]
+        self.head = l[0]
 
-        letter = Range("AZaz")
-        digit = Range("09")
-        text = Rep(letter | digit | Str(" "))
-        open_bracket = Str('{{')
-        close_bracket = Str('}}')
-        lex = Lexicon([
-            (text, 'terminal'),
-            (open_bracket, 'open'),
-            (close_bracket, 'close')
-        ])
-        s = cStringIO.StringIO(formula)
-        scanner = Scanner(lex, s)
-
-        tokens = []
-        while 1:
-            token = scanner.read()
-            if token[1] is '':
-                break
-            else:
-                tokens.append(token)
-                print token
-
-        lexl = []
-        param = False
-        for instance in tokens:
-            if (instance[0] == 'terminal' and not param):
-                lexl.append((Str(instance[1]), 'id_' + self.id))
-            elif(instance[0] == 'open'):
-                param = True
-            elif(instance[0] == 'close'):
-                param = False
-
-        self.rules = lexl
-
-        for x in lexl:
-            print x
-
-class DuplicateIDException(Exception):
-    pass
 
 def testfunc():
-    print "x"
+    pass
 
-if __name__ == '__main__':
-    y = Formula('testfunc', 'Next bus for {{route}} at {{intersection}}', testfunc)
-    x = Parser()
-    x.addFormula(y)
-    x.parse("Next bus for 116 at Coronation and Lawrence")
+
+if __name__ == "__main__":
+    f = Formula("bustime", "Next bus for {{route}} at {{intersection}}", testfunc)
+    p = Parser()
+    p.addFormula(f)
+    p.parse("Next bus for 116 at Coronation and Lawrence")
