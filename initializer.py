@@ -14,7 +14,7 @@ from api.weather import get_conditions, get_forecast_today, get_forecast
 def get_parser():
     parser = Parser()
     parser.addFormula(Formula("4chan", "4chan {{board}}", four_chan))
-    parser.addFormula(Formula("bitly", "shorten {{url}}", shorten_url))
+    parser.addFormula(Formula("bitly", "Shorten {{url}}", shorten_url))
     parser.addFormula(Formula("btc", "BTC", get_btc_info))
     parser.addFormula(Formula("cdf", "CDF {{lab}}", lab))
     parser.addFormula(Formula("dictionary", "Define {{word}}", define))

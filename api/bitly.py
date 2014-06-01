@@ -10,9 +10,15 @@ def query(url):
     return json.loads(json_string)
 
 def shorten_url(l):
-    json = query(l[0])
-    return json['data']['url']
+    if not (l[0].startswith('http') or l[0].startswith('https')):
+        url = 'http://' + l[0]
+    else:
+        url = l[0]
+
+    json = query(url)
+    return url + ' shortened to ' + json['data']['url']
 
 
 if __name__ == '__main__':
     print shorten_url(['http://www.unhaltable.com'])
+    print shorten_url(['www.cryptr.ca'])
