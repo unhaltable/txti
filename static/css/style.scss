@@ -1,0 +1,219 @@
+@import 'constants';
+@import 'mixins';
+
+@import 'login';
+@import 'dashboard';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: $red;
+}
+
+html,
+body {
+  font: 16px/18px $fonts;
+  height: 100%;
+  text-align: center;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+pre {
+  display: inline-block;
+  font: 14px/16px $mono;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+h1 {
+  line-height: 2em;
+  font-size: 3em;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+h3 {
+  line-height: 1.2em;
+  font-size: 2em;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+input,
+button {
+  font-family: $fonts;
+}
+
+input {
+  @include border-radius(5px);
+  @include transition(all, 0.3s);
+  background: $cream;
+  border: 1px solid #fff;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  width: 100%;
+
+  &:focus {
+    background: #fff;
+  }
+}
+
+button {
+  @include border-radius(5px);
+  @include transition(all, 0.3s);
+  background: transparent;
+  border: 1px solid #fff;
+  cursor: pointer;
+  color: #fff;
+  padding: 1em 2em;
+}
+
+header {
+  background: $red url(../img/hero.jpg) no-repeat;
+  background-size: cover;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+
+  &::before {
+    background-color: rgba(255,78,80,.65);
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  #menu {
+    font-size: 0.8em;
+    position: absolute;
+    right: 1em;
+    text-transform: uppercase;
+    top: 1em;
+  }
+
+  #header-info {
+    height: 12em;
+    position: absolute;
+    top: 50%;
+    margin-top: -6em;
+    width: 100%;
+
+    h2 {
+      margin-bottom: 3.5em;
+    }
+
+    .button {
+      @include border-radius(5px);
+      @include transition(all, 0.3s);
+      border: 1px solid #fff;
+      cursor: pointer;
+      padding: 1em 2em;
+
+      &:hover {
+        background: #fff;
+        color: $red;
+      }
+    }
+  }
+
+}
+
+section#learn-more {
+  background: $orange;
+  padding: 2em 2em 0;
+
+  h3 {
+    color: #fff;
+    margin-bottom: 1em;
+  }
+
+  h4 {
+    color: #fff;
+    margin-bottom: 1em;
+  }
+
+  .recipe {
+    width: auto;
+
+    pre {
+      @include border-radius(5px);
+      background: $cream;
+      margin: 0.5em 0;
+      padding: 0.35em 0.75em;
+    }
+  }
+
+  #phone {
+    background: url(../img/phone.png) no-repeat;
+    background-size: 282px 488px;
+    height: 488px;
+    margin: 2em auto 0 auto;
+    width: 282px;
+  }
+}
+
+footer {
+  background: $tan;
+  font-size: 0.9em;
+  padding: 4em 1em;
+
+  #donate {
+    margin-bottom: 1.5em;
+  }
+
+  #disclosure {
+    font-size: 0.75em;
+  }
+
+  p {
+    margin-top: 0.5em;
+  }
+
+  a {
+    border-bottom: 1px dotted #777;
+    color: #000;
+  }
+}
+
+.paypal-button button {
+  @include transition(all, 0.3s);
+  background: none !important;
+  border: 1px solid #000 !important;
+  border-radius: 5px !important;
+  color: #000 !important;
+  font: normal 1em $fonts !important;
+  text-shadow: none !important;
+  padding: 0.5em 2em !important;
+
+  &::before,
+  &::after {
+    background: none !important;
+  }
+
+  &:hover {
+    background: #fff !important;
+  }
+}
