@@ -1,12 +1,30 @@
 from api.nextbus import get_bus_prediction
 from api.weather import weather_current
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 import pymongo
 import twilio.twiml
 
 import parser
 
 app = Flask(__name__)
+
+def serve_static(filename):
+    f = open("./static/"+filename)
+    n = f.readlines()
+    f.close()
+    print n
+    return reduce(lambda a, b: a+"\n" + b, n)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return serve_static("index.html")
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        return serve_static("login.html")
+    else:
+        return serve_static("login.html")
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
@@ -21,14 +39,6 @@ def dashboard():
             return "yay you're logged in"
         else:
             return app.make_response(redirect("/login"))
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if len(request.POST) == 0:
-        return app.render_template('/login.html')
-    else:
-        pass
-
 
 @app.route('/api', methods=['GET', 'POST'])
 def txti():
