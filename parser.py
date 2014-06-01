@@ -2,7 +2,7 @@ import re
 
 func = (
     '''def func(l):
-        return {}
+        return "{}"
     ''')
 
 class Parser:
@@ -15,7 +15,7 @@ class Parser:
             return 'I think you meant to use "man {{ function }}"'
         if input[:3] == 'man':
             return self.man(re.sub("man", '', input).strip())
-        self.formulae.sort(lambda x,y: len(x) < len(y))
+        self.formulae.sort(lambda x,y: len(x.pieces[0]) < len(y.pieces[0]))
         for formula in self.formulae:
             mat = re.search(formula.pieces[0], input)
             if (mat != None and mat.pos == 0):

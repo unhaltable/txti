@@ -13,3 +13,5 @@ def getParser():
 
     return parser
 
+if __name__ == "__main__":
+    print getParser().parse("wat")
