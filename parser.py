@@ -66,7 +66,7 @@ class Parser:
         for f in self.formulae:
             if not f.ee:
                 s+= f.id + ', '
-        return s[:-2]
+        return "Call man {{cmd}} for more details: " + s[:-2]
 class Formula:
     def __init__(self, id, formula, f, auth=False, ee=False):
         '''
