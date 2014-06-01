@@ -11,7 +11,8 @@ def query():
 
 def get_btc_info(l):
     json = query()
-    return 'Last price: {0}. In last 24hr: price high: {1}, price low: {2}, volume: {3}, volume weighted average price: {4}'.format(json['last'], json['high'], json['low'], json['volume'], json['vwap'])
+    return 'Last price: {}. In last 24hr: price high: {}, price low: {}, volume: {}, volume weighted average price: {}'.format(json['last'], json['high'], 
+                                                                                                                               json['low'], json['volume'], json['vwap'])
 
 
 if __name__ == '__main__':

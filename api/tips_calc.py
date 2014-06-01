@@ -9,5 +9,5 @@ def calc_tip(l):
 
 
 if __name__ == '__main__':
-    print calc_tip(['20.00', ' 5'])  # 1
+    print calc_tip(['20.00', '5'])  # 1
     print calc_tip(['15.75', '12'])  # 1.89

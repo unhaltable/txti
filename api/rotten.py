@@ -38,11 +38,12 @@ def get_movie(l):
     audience_rating = movie_data['ratings']['audience_rating']
     audience_score = movie_data['ratings']['audience_score']
 
-    return '{0} ({1}): {2} minutes, rated {3}. Critics rating: {4} ({5}%). Audience rating: {6} ({7}%).'.format(title, year, runtime, 
-                                                                                                                rating, critics_rating, 
-                                                                                                                critics_score, 
-                                                                                                                audience_rating, audience_score)
+    return '{} ({}): {} minutes, rated {}. Critics rating: {} ({}%). Audience rating: {} ({}%).'.format(title, year, runtime, 
+                                                                                                        rating, critics_rating, 
+                                                                                                        critics_score, 
+                                                                                                        audience_rating, audience_score)
 
 
 if __name__ == '__main__':
     print get_movie(['Toy Story 3'])
+    print get_movie(['TRON'])
