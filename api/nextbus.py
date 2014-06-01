@@ -22,10 +22,14 @@ def get_stop(stops, intersection):
     return -1
 
 
-def get_bus_prediction(params):
-    route_tag = params[0]
-    direction = params[1]
-    intersection = params[2] # "College St at St George St"
+def get_bus_prediction(l):
+    params = l[0].split(' ')
+    params.remove('at')
+    params[2:] = [' '.join(params[2:])]
+
+    route_tag = params[0]     # 506
+    direction = params[1]     # West
+    intersection = params[2]  # "College St and St George St"
 
     stops = parse_xml(nextbus_route_config.format(route_tag), 'stop', 'tag', 'title')
     stop_id = get_stop(stops, intersection.split(' and '))
@@ -47,5 +51,5 @@ def get_bus_prediction(params):
 
 
 if __name__ == '__main__':
-    print get_bus_prediction(['310', 'North', 'Bathurst St and Dewlane Dr'])
-    print get_bus_prediction(['506', 'West', 'College St and St George St'])
+    print get_bus_prediction(['310 North at Bathurst St and Dewlane Dr'])
+    print get_bus_prediction(['506 West at College St and St George St'])

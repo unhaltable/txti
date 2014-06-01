@@ -23,7 +23,7 @@ def get_parser():
     parser.addFormula(Formula("cdf", "CDF {{lab}}", lab))
     parser.addFormula(Formula("dictionary", "Define {{word}}", define))
     parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service))
-    parser.addFormula(Formula("next_bus", "Next bus for {{route}} {{direction}} at {{intersection}}", get_bus_prediction))
+    parser.addFormula(Formula("next_bus", "Next bus for {{routedirectionintersection}}", get_bus_prediction))
     parser.addFormula(Formula("rng", "rng{{minmax}}", rng))
     parser.addFormula(Formula("tips", "Tip {{amountpercent}}", calc_tip))
     parser.addFormula(Formula("rotten_tomatoes", "Rotten {{movie}}", get_movie))
