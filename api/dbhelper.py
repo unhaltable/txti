@@ -1,3 +1,4 @@
+import os
 import pymongo
 
 """
@@ -5,7 +6,10 @@ Assumed that on the same machine, a mongodb server is running on
 the same machine, port listed below
 pymongo 2.7.1
 """
-mongoport = 27017
+
+MONGO_URL = os.environ.get('MONGOHQ_URL')
+
+mongoport =  27017
 mongoaddr = "localhost"
 
 """
@@ -31,7 +35,7 @@ txti.api_fakeapi {
 class db_session():
 
     def __init__(self):
-        self.mongoclient = pymongo.MongoClient(mongoaddr, mongoport)
+        self.mongoclient = pymongo.MongoClient(MONGO_URL) if MONGO_URL else pymongo.MongoClient(mongoaddr, mongoport)
 
     #############
     #   Users   #

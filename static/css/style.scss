@@ -59,6 +59,12 @@ h4 {
   font-size: 1.5em;
 }
 
+h5 {
+  font-size: 1.5em;
+  font-weight: 300;
+  margin-bottom: 1em;
+}
+
 input,
 button {
   font-family: $fonts;
@@ -97,6 +103,7 @@ header {
   width: 100%;
 
   &::before {
+    @include transition(all, 0.3s);
     background-color: rgba(255,78,80,.65);
     content: ' ';
     height: 100%;
@@ -104,6 +111,10 @@ header {
     position: absolute;
     top: 0;
     width: 100%;
+  }
+
+  &:hover::before {
+    background-color: lighten(rgba(255,78,80,.65), 5%);
   }
 
   #menu {
@@ -115,13 +126,18 @@ header {
   }
 
   #header-info {
-    height: 12em;
+    height: 16em;
     position: absolute;
     top: 50%;
-    margin-top: -6em;
+    margin-top: -8em;
     width: 100%;
 
     h2 {
+      margin-bottom: 1em;
+    }
+
+    h4 {
+      font-weight: 300;
       margin-bottom: 3.5em;
     }
 
@@ -143,8 +159,9 @@ header {
 
 section#learn-more {
   background: $orange;
-    color: #fff;
+  color: #fff;
   padding: 2em 2em 0;
+  width: 100%;
 
   h3 {
     margin-bottom: 1em;
@@ -152,6 +169,31 @@ section#learn-more {
 
   h4 {
     margin-bottom: 1em;
+  }
+
+  #recipes {
+    width: 550px;
+    text-align: left;
+  }
+
+  #demo {
+    text-align: right;
+
+    @include breakpoint(medium) {
+      margin-top: 2em;
+    }
+  }
+
+  #recipes,
+  #demo {
+    display: inline-block;
+    vertical-align: bottom;
+
+    @include breakpoint(medium) {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
   }
 
   .recipe {
@@ -173,36 +215,50 @@ section#learn-more {
   }
 
   #coming-soon {
-    margin-top: 1em;
+    margin: 1em 0 2em 0;
   }
 
-  #phone {
-    background: url(../img/phone.png) no-repeat;
-    background-size: 282px 267px;
-    height: 267px;
-    margin: 2.5em auto 0 auto;
-    width: 282px;
+  #demo {
+    #number {
+      font-size: 1.8em;
+      font-weight: 500;
+    }
 
-    #example {
-      @include transition(all, 0.5s);
-      background: url(../img/phone/current.jpg) no-repeat;
-      background-size: 263px auto;
-      height: 166px;
-      position: relative;
-      top: 101px;
-      left: 9px;
-      width: 263px;
+    #phone {
+      background: url(../img/phone.png) no-repeat;
+      background-size: 282px 267px;
+      height: 267px;
+      margin: 7.5em auto 0 auto;
+      vertical-align: bottom;
+      width: 282px;
+
+      @include breakpoint(medium) {
+        margin-top: 2.5em;
+      }
+
+      #example {
+        @include transition(all, 0.5s);
+        background: url(../img/phone/define.jpg) no-repeat;
+        background-size: 263px auto;
+        height: 166px;
+        position: relative;
+        top: 101px;
+        left: 9px;
+        width: 263px;
+      }
     }
   }
+
 }
 
 footer {
   background: $tan;
+  color: $dark-grey;
   font-size: 0.9em;
   padding: 4em 1em;
 
   #donate {
-    margin-bottom: 1.5em;
+    margin-bottom: 4em;
   }
 
   #disclosure {
@@ -222,9 +278,9 @@ footer {
 .paypal-button button {
   @include transition(all, 0.3s);
   background: none !important;
-  border: 1px solid #000 !important;
+  border: 1px solid $dark-grey !important;
   border-radius: 5px !important;
-  color: #000 !important;
+  color: $dark-grey !important;
   font: normal 1em $fonts !important;
   text-shadow: none !important;
   padding: 0.5em 2em !important;

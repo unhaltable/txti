@@ -16,7 +16,7 @@ def get_doge_info(l):
 	value = query(api_value)[u'data'][u'amount']
 	difficulty = query(api_difficulty)[u'data'][u'difficulty']
 
-	return "current value of doge: %s cents USD\n current block: %s\n current mining difficulty rating: %s\n"%(value*100, block, difficulty)
+	return "Current value of doge: %s cents USD\nCurrent block: %s\nCurrent mining difficulty rating: %s\n"%(value*100, block, difficulty)
 
 if __name__ == "__main__":
 	print get_doge_info([])

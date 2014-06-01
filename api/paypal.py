@@ -10,34 +10,39 @@ def do_paypal(l):
 	amount = l[0]
 	currency = l[1]
 
-	resp = paypalrestsdk.configure({
-	  	"mode": "sandbox", # sandbox or live
-	  	"client_id": "ASADDBDt4pU4eFXwJq16hXlXl5keoZ7VbJyasjinFsdFnILS_4MkMhDcUqtB",
-	  	"client_secret": read_full("./client_secret")})
-
+	paypalrestsdk.configure({
+		"mode": "sandbox", # sandbox or live
+		"client_id": "ASADDBDt4pU4eFXwJq16hXlXl5keoZ7VbJyasjinFsdFnILS_4MkMhDcUqtB",
+		"client_secret": read_full("./client_secret")})
 
 	payment = paypalrestsdk.Payment({
-	  "intent": "sale",
-	  "payer": {
-    "payment_method": "paypal" },
-	  "transactions": [{
-	    "item_list": {
-	      "items": [{
-	        "name": "txti donation",
-	        "sku": "item",
-	        "price": amount,
-	        "currency": currency,
-	        "quantity": 1 }]},
-	    "amount": {
-	      "total": "1.00",
-	      "currency": "USD" },
-	    "description": "donation to the unhaltable//txti team." }]})
-
+	  "intent":"sale",
+	  "redirect_urls":{
+		"return_url":"http://unhaltable.com/thanks",
+		"cancel_url":"http://unhaltable.com/fuck_off"
+	  },
+	  "payer":{
+		"payment_method":"paypal"
+	  },
+	  "transactions":[
+		{
+		  "amount":{
+			"total":amount,
+			"currency":currency
+		  },
+		  "description":"This is the payment transaction description."
+		}
+	  ]
+	})
 	
-	jsonresp = payment.create()
-
-	return "go to ("+jsonresp['approval url']+") to confirm payment"
-
+	if payment.create():
+		redirect_url = "----"
+		for link in payment.links:#Payer that funds a payment
+			if link.method == "REDIRECT" :
+				redirect_url=link.href
+		return "go to ("+redirect_url+") to confirm payment"
+	else:
+		return "payment creation failed -- our bad :<"
 
 def get_auth_token():
 
