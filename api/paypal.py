@@ -1,7 +1,6 @@
 import paypalrestsdk
 import os
 
-
 def read_full(e):
 	f = open(e)
 	n = f.readlines()[0].replace("\n","")
@@ -42,13 +41,13 @@ def do_paypal(l):
 		for link in payment.links:#Payer that funds a payment
 			if link.method == "REDIRECT" :
 				redirect_url=link.href
-		return "go to ("+redirect_url+") to confirm payment"
+		return "Please go to ("+redirect_url+") to confirm your payment."
 	else:
-		return "payment creation failed -- our bad :<"
+		return "Payment creation failed -- our bad :<"
 
 def get_auth_token():
-
 	return resp["access_token"]
+
 
 if __name__ == "__main__":
 	do_paypal(["12","USD"])
