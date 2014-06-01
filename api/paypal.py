@@ -1,4 +1,6 @@
 import paypalrestsdk
+import os
+
 
 def read_full(e):
 	f = open(e)
@@ -12,7 +14,7 @@ def do_paypal(l):
 
 	paypalrestsdk.configure({
 		"mode": "sandbox", # sandbox or live
-		"client_id": "ASADDBDt4pU4eFXwJq16hXlXl5keoZ7VbJyasjinFsdFnILS_4MkMhDcUqtB",
+		"client_id": os.environ.get('SECRET_KEY'),
 		"client_secret": read_full("./client_secret")})
 
 	payment = paypalrestsdk.Payment({
