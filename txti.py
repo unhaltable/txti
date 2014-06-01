@@ -6,7 +6,7 @@ import twilio.twiml
 import loginsys
 import api.dbhelper as dbhelper
 import parser
-from urllib import urlencode
+from urllib import quote_plus
 
 mongoport = 27017
 mongoaddr = "localhost"
@@ -25,15 +25,14 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == "POST":
-        return serve_static("login.html")
-    else:
-        return serve_static("login.html")
+    return serve_static("login.html")
 
 def dologin(form):
     conn = pymongo.MongoClient(mongoaddr, mongoport)
     n = loginsys.get_login_key(conn, form["username"], form["password"])
     conn.disconnect()
+
+    print n
 
     if n[0]:
         response = app.make_response(redirect("/dashboard") )
@@ -66,7 +65,7 @@ def register_push():
                 msg = e.message
         else:
             msg="not all fields filled"
-    response = app.make_response(redirect("/login?failure=register?msg=%s"%( urlencode(msg) )) )
+    response = app.make_response(redirect("/login?failure=register?msg=%s"%( quote_plus(msg)  )) )
     return response
 
 
