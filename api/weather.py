@@ -51,8 +51,24 @@ def weather_forecast_next(country, city):
     return forecast(1, country, city)
 
 
+def get_conditions(l):
+    return weather_current('Canada', l[0])
+
+
+def get_forecast_today(l):
+    return weather_forecast_today('Canada', l[0])
+
+
+def get_forecast(l):
+    return weather_forecast_next('Canada', l[0])
+
+
 if __name__ == '__main__':
-    print weather_current('Canada', 'Toronto')
-    print weather_forecast_today('Canada', 'Toronto')
-    print weather_forecast_next('Canada', 'Toronto')
+    #print weather_current('Canada', 'Toronto')
+    #print weather_forecast_today('Canada', 'Toronto')
+    #print weather_forecast_next('Canada', 'Toronto')
+
+    print get_conditions(['Toronto'])
+    print get_forecast_today(['Toronto'])
+    print get_forecast(['Toronto'])
 
