@@ -199,7 +199,7 @@ def txti():
     parser = get_parser()
     response = None
     try:
-        response = parser.parse(body) # or 'Invalid command'
+        response = parser.parse(body, auth=from_number) # or 'Invalid command'
     except Exception as e:
         print e
         response = 'Invalid command'
