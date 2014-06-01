@@ -73,6 +73,10 @@ def parse():
     return labs
 
 def get_lab(query):
+    if (query.lower() == 'korea'):
+        query = 'BA2240'
+    elif(query.lower() == 'china'):
+        query = 'BA2210'
     labs = parse()
     for lab in labs:
         if lab.name == query:
