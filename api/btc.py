@@ -9,30 +9,10 @@ def query():
     f.close()
     return json.loads(json_string)
 
-def get_btc_last(l):
+def get_btc_info(l):
     json = query()
-    return 'Last BTC price: ' + json['last']
-
-def get_btc_high(l):
-    json = query()
-    return 'Last 24 hours price high: ' + json['high']
-
-def get_btc_low(l):
-    json = query()
-    return 'Last 24 hours price low: ' + json['low']
-
-def get_btc_volume(l):
-    json = query()
-    return 'Last 24 hours volume: ' + json['volume']
-
-def get_btc_vwap(l):
-    json = query()
-    return 'Last 24 hours volume weighted average price: ' + json['vwap']
+    return 'Last price: {0}. In last 24hr: price high: {1}, price low: {2}, volume: {3}, volume weighted average price: {4}'.format(json['last'], json['high'], json['low'], json['volume'], json['vwap'])
 
 
 if __name__ == '__main__':
-    print get_btc_last([])
-    print get_btc_high([])
-    print get_btc_low([])
-    print get_btc_volume([])
-    print get_btc_vwap([])
+    print get_btc_info([])
