@@ -33,7 +33,7 @@ def get_parser():
     parser.addFormula(Formula("reverse", "reverse {{string}}", lambda l: l[0][::-1]))
     parser.addNoParamFormula(Formula("always_cancer", "I feel sick", "it's probably cancer (but consult a real doctor)"))
     parser.addFormula(Formula("doge", "doge", get_doge_info))
-    parser.addFormula(Formula("dice", "Roll {{ n }} D {{ x }}", dice))
+    parser.addFormula(Formula("dice", "Roll {{ n }}D{{ x }}", dice))
 
 
 
