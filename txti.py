@@ -94,8 +94,14 @@ def txti():
     from_number = request.values.get('From', None)
     body = request.values.get('Body', '')
 
+    # Log request
+    app.logger.info('Received SMS: {}'.format(body))
+
     # Create the response string by parsing the query, calling relevant APIs, and returning a string
     response = get_parser().parse(body)
+
+    # Log response
+    app.logger.info('Sending response: {}'.format(response))
 
     # Create the response to be sent back to the user
     resp = twilio.twiml.Response()
