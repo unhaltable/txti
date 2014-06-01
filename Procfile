@@ -1,1 +1,1 @@
-web: python txti.py
+web: gunicorn txti:app --error-logfile -

@@ -1,5 +1,6 @@
+from urlparse import urlparse
 import os
-import pymongo
+from pymongo import Connection, MongoClient
 
 """
 Assumed that on the same machine, a mongodb server is running on
@@ -9,8 +10,6 @@ pymongo 2.7.1
 
 MONGO_URL = os.environ.get('MONGOHQ_URL')
 
-mongoport =  27017
-mongoaddr = "localhost"
 
 """
 Databases:
@@ -35,7 +34,11 @@ txti.api_fakeapi {
 class db_session():
 
     def __init__(self):
-        self.mongoclient = pymongo.MongoClient(MONGO_URL) if MONGO_URL else pymongo.MongoClient(mongoaddr, mongoport)
+        if MONGO_URL:
+            self.mongoclient = MongoClient(MONGO_URL)
+        else:
+            # Not on an app with the MongoHQ add-on, do some localhost action
+            self.mongoclient = MongoClient('localhost', 27017)
 
     #############
     #   Users   #
