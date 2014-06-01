@@ -53,11 +53,11 @@ class Parser:
         self.man[formula.id] = formula.form
         self.formulae.append(formula)
 
-    def addNoParamFormula(self, req, response):
+    def addNoParamFormula(self, name, req, response):
         ''' CAUSE REFLECTIVE CODE '''
         x = func.format(response)
         exec x
-        self.addFormula(Formula(req, req, func))
+        self.addFormula(Formula(name, req, func))
 
 class Formula:
     def __init__(self, id, formula, f, auth=False):
