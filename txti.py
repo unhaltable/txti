@@ -16,15 +16,6 @@ mongoaddr = "localhost"
 
 app = Flask(__name__)
 
-# Direct logs to stdout
-if os.environ.get('HEROKU') is not None:
-    import logging
-    stream_handler = logging.StreamHandler()
-    app.logger.addHandler(stream_handler)
-    app.logger.setLevel(logging.INFO)
-    app.logger.info('txti')
-
-
 def serve_static(filename):
     f = open("./static/"+filename)
     n = f.readlines()
@@ -223,4 +214,4 @@ if __name__ == '__main__':
     log.setLevel(logging.INFO)
     log.addHandler(logging.StreamHandler(sys.stdout))
 
-    app.run(debug=True)
+    app.run(debug=True, port=int(os.environ.get('PORT')))

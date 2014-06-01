@@ -1,1 +1,1 @@
-web: gunicorn txti:app
+web: gunicorn txti:app --error-logfile -
