@@ -1,5 +1,6 @@
 import os
 import pymongo
+import hashlib
 
 """
 Assumed that on the same machine, a mongodb server is running on
