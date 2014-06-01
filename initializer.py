@@ -4,6 +4,7 @@ from api.cdf import lab
 from api.dictionary import define, get_definition
 from api.four_chan import four_chan
 from api.jeffwu import jeff_wu_as_a_service
+from api.nextbus import get_bus_prediction
 from api.rng import rng
 from api.rotten import get_movie
 from api.weather import get_conditions, get_forecast_today, get_forecast
@@ -16,6 +17,7 @@ def get_parser():
     parser.addFormula(Formula("cdf", "CDF {{lab}}", lab))
     parser.addFormula(Formula("dictionary", "Define {{word}}", define))
     parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service))
+    parser.addFormula(Formula("next_bus", "Next bus for {{route}} {{direction}} at {{intersection}}", get_bus_prediction))
     parser.addFormula(Formula("rng", "rng{{minmax}}", rng))
     parser.addFormula(Formula("rotten_tomatoes", "Rotten {{movie}}", get_movie))
     parser.addFormula(Formula("weather_current", "Current weather in {{city}}", get_conditions))
