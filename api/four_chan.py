@@ -29,4 +29,4 @@ def four_chan(l):
 
 
 if __name__ == "__main__":
-    four_chan("b")
+    print four_chan("b")

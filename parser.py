@@ -3,14 +3,24 @@ import re
 class Parser:
     def __init__(self):
         self.formulae = []
+        self.man = {}
 
     def parse(self, input):
+        if input[:4] == "help":
+            return 'I think you meant to use "man {{ function }}"'
+        if input[:3] == 'man':
+            return self.man(re.sub("man", '', input).strip())
         self.formulae.sort(lambda x,y: len(x) < len(y))
         for formula in self.formulae:
             mat = re.search(formula.pieces[0], input)
             if (mat != None and mat.pos == 0):
                 return self.analyze(formula, input)
 
+    def man(self, input):
+        if input == "help":
+            return "lol"
+        else:
+            return self.man[input]
 
     def analyze(self, formula, input):
         inputs = []
@@ -32,11 +42,13 @@ class Parser:
         for item in self.formulae:
             if item == formula:
                 return
+        self.man[formula.id] = formula.form
         self.formulae.append(formula)
-
+    
 
 class Formula:
     def __init__(self, id, formula, f):
+        self.form = formula
         self.id = id
         self.f = f
         if (re.search(r'{{', formula) == None):
