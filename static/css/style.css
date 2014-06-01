@@ -105,6 +105,7 @@ a {
   color: #fff;
   text-decoration: none; }
 
+tt,
 pre {
   display: inline-block;
   font: 14px/16px "Source Code Pro", "Consolas", "Courier New", monospace;
@@ -236,6 +237,23 @@ section#learn-more {
     margin-bottom: 1em; }
   section#learn-more h4 {
     margin-bottom: 1em; }
+  section#learn-more tt,
+  section#learn-more pre {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    background: #e1f5c4;
+    color: #000;
+    margin: 0.5em 0;
+    padding: 0.35em 0.75em; }
+    section#learn-more tt:hover,
+    section#learn-more pre:hover {
+      background: #fff; }
   section#learn-more #recipes {
     width: 550px;
     text-align: left; }
@@ -257,23 +275,12 @@ section#learn-more {
   section#learn-more .recipe {
     cursor: pointer;
     width: auto; }
-    section#learn-more .recipe pre {
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      -webkit-transition: all 0.3s ease 0s;
-      -moz-transition: all 0.3s ease 0s;
-      -ms-transition: all 0.3s ease 0s;
-      -o-transition: all 0.3s ease 0s;
-      transition: all 0.3s ease 0s;
-      background: #e1f5c4;
-      color: #000;
-      margin: 0.5em 0;
-      padding: 0.35em 0.75em; }
-      section#learn-more .recipe pre:hover {
-        background: #fff; }
   section#learn-more #coming-soon {
+    margin: 1em 0 1em 0; }
+  section#learn-more #list {
     margin: 1em 0 2em 0; }
+    section#learn-more #list tt {
+      margin: 0 0.25em; }
   section#learn-more #demo #number {
     font-size: 1.8em;
     font-weight: 500; }
@@ -281,7 +288,7 @@ section#learn-more {
     background: url(../img/phone.png) no-repeat;
     background-size: 282px 267px;
     height: 267px;
-    margin: 8.5em auto 0 auto;
+    margin: 7.5em auto 0 auto;
     vertical-align: bottom;
     width: 282px; }
     @media (max-width: 992px) {

@@ -13,8 +13,10 @@ class Parser:
 
     def parse(self, input, auth=None):
         self.auth = auth
-        if input[:3] == 'man':
+        if input.lower()[:3] == 'man':
             return self._man(re.sub('man', '', input).strip())
+        if input.lower()[:4] == 'list':
+            return self.list()
         self.formulae.sort(lambda x,y: len(x.pieces[0]) < len(y.pieces[0]))
         for formula in self.formulae:
             mat = re.search(formula.pieces[0], input)
@@ -53,14 +55,20 @@ class Parser:
         self.man[formula.id] = formula.form
         self.formulae.append(formula)
 
-    def addNoParamFormula(self, name, req, response):
+    def addNoParamFormula(self, name, req, response, ee=True):
         ''' CAUSE REFLECTIVE CODE '''
         x = func.format(response)
         exec x
-        self.addFormula(Formula(name, req, func))
+        self.addFormula(Formula(name, req, func, ee=ee))
 
+    def list(self):
+        s = ''
+        for f in self.formulae:
+            if not f.ee:
+                s+= f.id + ', '
+        return s[:-2]
 class Formula:
-    def __init__(self, id, formula, f, auth=False):
+    def __init__(self, id, formula, f, auth=False, ee=False):
         '''
             f should be a function accepting a list of parameters.
             if auth is true then it should also except a second parameter
@@ -70,6 +78,7 @@ class Formula:
         self.id = id
         self.f = f
         self.auth = auth
+        self.ee = ee
         if (re.search(r'{{', formula) == None):
             self.pieces = [formula]
         else:

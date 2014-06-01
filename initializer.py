@@ -16,13 +16,13 @@ from api.dice import dice
 
 def get_parser():
     parser = Parser()
-    parser.addFormula(Formula("4chan", "4chan {{board}}", four_chan))
+    parser.addFormula(Formula("4chan", "4chan {{board}}", four_chan, ee=True))
     parser.addFormula(Formula("bitly", "Shorten {{url}}", shorten_url))
     parser.addFormula(Formula("btc", "BTC", get_btc_info))
     parser.addFormula(Formula("calc", "Calc {{formula}}", calc))
     parser.addFormula(Formula("cdf", "CDF {{lab}}", lab))
     parser.addFormula(Formula("dictionary", "Define {{word}}", define))
-    parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service))
+    parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service, ee=True))
     parser.addFormula(Formula("next_bus", "Next bus for {{routedirectionintersection}}", get_bus_prediction))
     parser.addFormula(Formula("rng", "rng{{minmax}}", rng))
     parser.addFormula(Formula("tips", "Tip {{amountpercent}}", calc_tip))
@@ -40,5 +40,6 @@ def get_parser():
     return parser
 
 if __name__ == "__main__":
-    print get_parser().parse("Roll 4D20")
+    print get_parser().parse("Roll 4 D 20")
     print get_parser().parse("I feel sick")
+    print get_parser().parse("list")
