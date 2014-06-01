@@ -159,6 +159,25 @@ section#learn-more {
     margin-bottom: 1em;
   }
 
+  #recipes,
+  #phone {
+    display: inline-block;
+    text-align: left;
+
+    @include breakpoint(medium) {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  #recipes {
+    width: 500px;
+
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
+
   .recipe {
     cursor: pointer;
     width: auto;
@@ -178,7 +197,7 @@ section#learn-more {
   }
 
   #coming-soon {
-    margin-top: 1em;
+    margin: 1em 0;
   }
 
   #phone {
@@ -186,6 +205,7 @@ section#learn-more {
     background-size: 282px 267px;
     height: 267px;
     margin: 2.5em auto 0 auto;
+    vertical-align: bottom;
     width: 282px;
 
     #example {

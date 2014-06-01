@@ -227,6 +227,20 @@ section#learn-more {
     margin-bottom: 1em; }
   section#learn-more h4 {
     margin-bottom: 1em; }
+  section#learn-more #recipes,
+  section#learn-more #phone {
+    display: inline-block;
+    text-align: left; }
+    @media (max-width: 992px) {
+      section#learn-more #recipes,
+      section#learn-more #phone {
+        display: block;
+        text-align: center; } }
+  section#learn-more #recipes {
+    width: 500px; }
+    @media (max-width: 992px) {
+      section#learn-more #recipes {
+        width: 100%; } }
   section#learn-more .recipe {
     cursor: pointer;
     width: auto; }
@@ -246,12 +260,13 @@ section#learn-more {
       section#learn-more .recipe pre:hover {
         background: #fff; }
   section#learn-more #coming-soon {
-    margin-top: 1em; }
+    margin: 1em 0; }
   section#learn-more #phone {
     background: url(../img/phone.png) no-repeat;
     background-size: 282px 267px;
     height: 267px;
     margin: 2.5em auto 0 auto;
+    vertical-align: bottom;
     width: 282px; }
     section#learn-more #phone #example {
       -webkit-transition: all 0.5s ease 0s;
