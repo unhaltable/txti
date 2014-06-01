@@ -9,7 +9,7 @@ class Parser:
     def __init__(self):
         self.formulae = []
         self.man = {}
-        self.auth
+        # self.auth
 
     def parse(self, input, auth=None):
         self.auth = None
