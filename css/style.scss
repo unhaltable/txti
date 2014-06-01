@@ -178,9 +178,15 @@ section#learn-more {
   #phone {
     background: url(../img/phone.png) no-repeat;
     background-size: 282px 488px;
-    height: 488px;
+    height: 267px;
     margin: 2.5em auto 0 auto;
     width: 282px;
+
+    #example {
+      margin-left: 8px;
+      margin-top: 70px;
+      width: 282px;
+    }
   }
 }
 
