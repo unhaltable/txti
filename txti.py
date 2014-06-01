@@ -2,7 +2,7 @@ from api.nextbus import get_bus_prediction
 from api.weather import weather_current
 from flask import Flask, request, render_template, redirect, url_for
 import pymongo
-from initializer import getParser
+from initializer import get_parser
 import twilio.twiml
 import loginsys
 import api.dbhelper as dbhelper
@@ -92,10 +92,10 @@ def dashboard():
 def txti():
     # Get parameters from request
     from_number = request.values.get('From', None)
-    body = request.values.get('Body', None)
+    body = request.values.get('Body', '')
 
     # Create the response string by parsing the query, calling relevant APIs, and returning a string
-    response = getParser.parse(body)
+    response = get_parser().parse(body)
 
     # Create the response to be sent back to the user
     resp = twilio.twiml.Response()

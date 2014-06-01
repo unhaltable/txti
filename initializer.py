@@ -8,6 +8,7 @@ from api.weather import weather_current
 from api.weather import weather_forecast_next
 from api.weather import weather_forecast_today
 
+
 def get_parser():
     parser = Parser()
     parser.addFormula(Formula("4chan", "4chan {{board}}", four_chan))
