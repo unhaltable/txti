@@ -223,4 +223,8 @@ if __name__ == '__main__':
     log.setLevel(logging.INFO)
     log.addHandler(logging.StreamHandler(sys.stdout))
 
-    app.run(debug=True, port=os.environ.get('PORT'))
+    port = os.environ.get('PORT')
+    if port:
+        app.run(debug=True, port=port)
+    else:
+        app.run(debug=True)
