@@ -3,9 +3,13 @@ from api.weather import weather_current
 from flask import Flask, request, render_template, redirect, url_for
 import pymongo
 import twilio.twiml
-import loginsys, dbhelper
-
+import loginsys
+import api.dbhelper as dbhelper
 import parser
+from urllib import urlencode
+
+mongoport = 27017
+mongoaddr = "localhost"
 
 app = Flask(__name__)
 
@@ -13,7 +17,6 @@ def serve_static(filename):
     f = open("./static/"+filename)
     n = f.readlines()
     f.close()
-    print n
     return reduce(lambda a, b: a+"\n" + b, n)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -27,15 +30,45 @@ def login():
     else:
         return serve_static("login.html")
 
+def dologin(form):
+    conn = pymongo.MongoClient(mongoaddr, mongoport)
+    n = loginsys.get_login_key(conn, form["username"], form["password"])
+    conn.disconnect()
+
+    if n[0]:
+        response = app.make_response(redirect("/dashboard") )
+        response.set_cookie("txtisessionkey", value=n[1])
+    else:
+        response = app.make_response(redirect("/login?failure=login") )
+    return response
+    
+
 #login push
-@app.route('/login-push', methods=["POST"])
+@app.route('/login_push', methods=["POST"])
 def login_push():
-    pass
+    if request.method == 'POST':
+        return dologin(request.form)
+    else:
+        response = app.make_response(redirect("/login?failure=login") )
+        return response
 
 #register push
-@app.route('/register-push', methods=["POST"])
+@app.route('/register_push', methods=["POST"])
 def register_push():
-    pass
+    msg=""
+    if request.method == 'POST':
+        if all([ (x in request.form.keys()) for x in ["username","password","email","phone"] ] ):
+            session = dbhelper.db_session()
+            try:
+                session.register_user(request.form["username"], request.form["password"], request.form["phone"], request.form["email"])
+                return dologin(request.form)
+            except(Exception) as e:
+                msg = e.message
+        else:
+            msg="not all fields filled"
+    response = app.make_response(redirect("/login?failure=register?msg=%s"%( urlencode(msg) )) )
+    return response
+
 
 
 @app.route('/dashboard', methods=['GET', 'POST'])
