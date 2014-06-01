@@ -152,7 +152,7 @@ all_apis=[
         "api-id": "fakeapi2",
         "api-name": "Fake API 2",
         "username": None,
-        "password": None,
+        "secondfield": None,
         "thirdfield": None
     }
 ]
