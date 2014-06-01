@@ -143,35 +143,56 @@ header {
 
 section#learn-more {
   background: $orange;
+    color: #fff;
   padding: 2em 2em 0;
 
   h3 {
-    color: #fff;
     margin-bottom: 1em;
   }
 
   h4 {
-    color: #fff;
     margin-bottom: 1em;
   }
 
   .recipe {
+    cursor: pointer;
     width: auto;
 
     pre {
       @include border-radius(5px);
+      @include transition(all, 0.3s);
       background: $cream;
+      color: #000;
       margin: 0.5em 0;
       padding: 0.35em 0.75em;
+
+      &:hover {
+        background: #fff;
+      }
     }
+  }
+
+  #coming-soon {
+    margin-top: 1em;
   }
 
   #phone {
     background: url(../img/phone.png) no-repeat;
-    background-size: 282px 488px;
-    height: 488px;
-    margin: 2em auto 0 auto;
+    background-size: 282px 267px;
+    height: 267px;
+    margin: 2.5em auto 0 auto;
     width: 282px;
+
+    #example {
+      @include transition(all, 0.5s);
+      background: url(../img/phone/current.jpg) no-repeat;
+      background-size: 263px auto;
+      height: 166px;
+      position: relative;
+      top: 101px;
+      left: 9px;
+      width: 263px;
+    }
   }
 }
 
