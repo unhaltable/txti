@@ -1,6 +1,7 @@
 from parser import *
 from api.bitly import shorten_url
 from api.btc import get_btc_info
+from api.calc import calc
 from api.cdf import lab
 from api.dictionary import define, get_definition
 from api.four_chan import four_chan
@@ -16,6 +17,7 @@ def get_parser():
     parser.addFormula(Formula("4chan", "4chan {{board}}", four_chan))
     parser.addFormula(Formula("bitly", "Shorten {{url}}", shorten_url))
     parser.addFormula(Formula("btc", "BTC", get_btc_info))
+    parser.addFormula(Formula("calc", "Calc {{formula}}", calc))
     parser.addFormula(Formula("cdf", "CDF {{lab}}", lab))
     parser.addFormula(Formula("dictionary", "Define {{word}}", define))
     parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service))
