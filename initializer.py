@@ -12,7 +12,7 @@ from api.tips_calc import calc_tip
 from api.rotten import get_movie
 from api.doge import get_doge_info
 from api.weather import get_conditions, get_forecast_today, get_forecast
-
+from api.paypal import do_paypal
 
 def get_parser():
     parser = Parser()
@@ -33,6 +33,7 @@ def get_parser():
     parser.addFormula(Formula("reverse", "reverse {{string}}", lambda l: l[0][::-1]))
     parser.addFormula(Formula("always_cancer", "I feel sick", lambda l: "it's probably cancer (but consult a real doctor)"))
     parser.addFormula(Formula("doge", "doge", get_doge_info))
+    parser.addFormula(Formula("paypal_donate", "donate {{amount}} {{currency}}", do_paypal))
 
 
 
