@@ -196,7 +196,13 @@ def txti():
                     '{}'.format(body))
 
     # Create the response string by parsing the query, calling relevant APIs, and returning a string
-    response = get_parser().parse(body)
+    parser = get_parser()
+    response = None
+    try:
+        response = parser.parse(body) # or 'Invalid command'
+    except Exception as e:
+        print e
+        response = 'Invalid command'
 
     # Log response
     app.logger.info('Sending response:\n'
@@ -204,7 +210,7 @@ def txti():
 
     # Create the response to be sent back to the user
     resp = twilio.twiml.Response()
-    resp.message(response)
+    resp.message(str(response))
     return str(resp)
 
 
