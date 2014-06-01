@@ -13,9 +13,9 @@ class Parser:
 
     def parse(self, input, auth=None):
         self.auth = auth
-        if input[:3] == 'man':
+        if input.lower()[:3] == 'man':
             return self._man(re.sub('man', '', input).strip())
-        if input[:4] == 'list':
+        if input.lower()[:4] == 'list':
             return self.list()
         self.formulae.sort(lambda x,y: len(x.pieces[0]) < len(y.pieces[0]))
         for formula in self.formulae:
