@@ -10,6 +10,7 @@ import loginsys
 import api.dbhelper as dbhelper
 import logging
 
+MONGO_URL = os.environ.get('MONGOHQ_URL')
 
 mongoport = 27017
 mongoaddr = "localhost"
@@ -43,7 +44,7 @@ def login():
     return serve_static("login.html")
 
 def dologin(form):
-    conn = pymongo.MongoClient(mongoaddr, mongoport)
+    conn = pymongo.MongoClient(MONGO_URL) if MONGO_URL else pymongo.MongoClient(mongoaddr, mongoport)
     print form["username"], form["password"]
     n = loginsys.get_login_key(conn, form["username"], form["password"])
     conn.disconnect()
@@ -92,7 +93,7 @@ def register_push():
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    client = pymongo.MongoClient(mongoaddr, mongoport)
+    client = pymongo.MongoClient(MONGO_URL) if MONGO_URL else pymongo.MongoClient(mongoaddr, mongoport)
     loginsys.kill_key(client , request.cookies['txtisessionkey'])
     client.disconnect()
     response = app.make_response(redirect("/") )
