@@ -9,8 +9,10 @@ class Parser:
     def __init__(self):
         self.formulae = []
         self.man = {}
+        self.auth
 
-    def parse(self, input):
+    def parse(self, input, auth=None):
+        self.auth = None
         if input[:3] == 'man':
             return self._man(re.sub('man', '', input).strip())
         self.formulae.sort(lambda x,y: len(x.pieces[0]) < len(y.pieces[0]))
@@ -39,7 +41,10 @@ class Parser:
             inputs.append(input[num1:num2])
             i += 1
         inputs.append(input[end.end():])
-        return formula.f(inputs)
+        if (formula.auth):
+            return formula.f(inputs, self.auth)
+        else:
+            return formula.f(inputs)
 
     def addFormula(self, formula):
         for item in self.formulae:
@@ -55,10 +60,11 @@ class Parser:
         self.addFormula(Formula(req, req, func))
 
 class Formula:
-    def __init__(self, id, formula, f):
+    def __init__(self, id, formula, f, auth=False):
         self.form = formula
         self.id = id
         self.f = f
+        self.auth = auth
         if (re.search(r'{{', formula) == None):
             self.pieces = [formula]
         else:
