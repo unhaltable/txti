@@ -20,7 +20,7 @@ def get_definition(word):
                     return other_node.text[1:]
 
 def define(l):
-    return getDefinition(l[0])
+    return get_definition(l[0])
 
 
 if __name__ == "__main__":
