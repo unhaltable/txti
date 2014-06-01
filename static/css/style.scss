@@ -28,6 +28,7 @@ a {
   text-decoration: none;
 }
 
+tt,
 pre {
   display: inline-block;
   font: 14px/16px $mono;
@@ -171,6 +172,20 @@ section#learn-more {
     margin-bottom: 1em;
   }
 
+  tt,
+  pre {
+    @include border-radius(5px);
+    @include transition(all, 0.3s);
+    background: $cream;
+    color: #000;
+    margin: 0.5em 0;
+    padding: 0.35em 0.75em;
+
+    &:hover {
+      background: #fff;
+    }
+  }
+
   #recipes {
     width: 550px;
     text-align: left;
@@ -199,23 +214,18 @@ section#learn-more {
   .recipe {
     cursor: pointer;
     width: auto;
-
-    pre {
-      @include border-radius(5px);
-      @include transition(all, 0.3s);
-      background: $cream;
-      color: #000;
-      margin: 0.5em 0;
-      padding: 0.35em 0.75em;
-
-      &:hover {
-        background: #fff;
-      }
-    }
   }
 
   #coming-soon {
+    margin: 1em 0 1em 0;
+  }
+
+  #list {
     margin: 1em 0 2em 0;
+
+    tt {
+      margin: 0 0.25em;
+    }
   }
 
   #demo {
@@ -228,7 +238,7 @@ section#learn-more {
       background: url(../img/phone.png) no-repeat;
       background-size: 282px 267px;
       height: 267px;
-      margin: 8.5em auto 0 auto;
+      margin: 7.5em auto 0 auto;
       vertical-align: bottom;
       width: 282px;
 
