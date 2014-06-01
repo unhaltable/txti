@@ -25,10 +25,10 @@ def is_key_valid(client, key):
 
     #check it's still valid
     keyobj = client.txti.keys.find_one({"uuid":key})
-    if (int(keyobj['expires']) < time.time()):
-        return keyobj.userid
+    if (int(keyobj['expires']) >= time.time()):
+        return keyobj['userid']
     else:
-        print "key expired"
+        print "key expired", time.time(), float(keyobj['expires'])
         client.txti.keys.remove({"uuid":key})
         return False
 
