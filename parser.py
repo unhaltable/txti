@@ -1,5 +1,10 @@
 import re
 
+func = (
+    '''def func(l):
+        return {}
+    ''')
+
 class Parser:
     def __init__(self):
         self.formulae = []
@@ -44,7 +49,12 @@ class Parser:
                 return
         self.man[formula.id] = formula.form
         self.formulae.append(formula)
-    
+
+    def addNoParamFormula(self, req, response):
+        ''' CAUSE REFLECTIVE CODE '''
+        x = func.format(response)
+        exec x
+        self.addFormula(Formula(req, req, func))
 
 class Formula:
     def __init__(self, id, formula, f):
