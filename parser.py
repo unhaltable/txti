@@ -39,11 +39,13 @@ class Formula:
     def __init__(self, id, formula, f):
         self.id = id
         self.f = f
-        l = re.split(r"{{|}}", formula)
-        while '' in l:
-            l.remove('')
-        self.pieces = [l[i] for i in range(0, len(l), 2)]
-        self.head = l[0]
+        if (re.search(r'{{', formula) == None):
+            self.pieces = [formula]
+        else:
+            l = re.split(r"{{|}}", formula)
+            while '' in l:
+                l.remove('')
+            self.pieces = [l[i] for i in range(0, len(l), 2)]
 
     def __eq__(self, other):
         return (self.id == other.id and self.f == other.f
@@ -68,4 +70,3 @@ if __name__ == "__main__":
     p.addFormula(f)
     result1 = p.parse("rng")
     result2 = p.parse("rng 5 10")
-    print(repr(result1))
