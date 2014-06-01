@@ -33,13 +33,13 @@
           <input class="passwordfield" type="password" name="password" placeholder="Password" autocorrect=off required>
           <input type="password" placeholder="Confirm password" autocorrect=off required>
           <input type="email" name="email" placeholder="Email address" autocorrect=off required>
-          <input type="tel" name="phone" placeholder="Phone number" autocorrect=off required>
+          <input type="tel" placeholder="Phone number [Format: +1(905)123-4567]" autocorrect=off required pattern='[\+]\d*[\(]\d*[\)]\d{3}[\-]\d{4}'>
           <button type="submit">Register</button>
         </form>
       </section>
     </div>
   </section>
-  <script src="static/js/script.js"></script>
+  <script src="static/js/script.min.js"></script>
   <script src="static/js/sha/sha512.js"></script>
   <script type="text/javascript">
   //autohasher
