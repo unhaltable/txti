@@ -5,3 +5,9 @@ var scrollTo = function(el, off){
 }
 
 $("#more-button").click(function(){ scrollTo("#learn-more", 0); });
+
+$(".recipe").click(function() {
+  var image = "img/phone/" + $(this).attr("data-key") + ".jpg";
+  $("#example").css('background-image', 'url(' + image + ')');
+});
+

@@ -205,28 +205,51 @@ header {
 
 section#learn-more {
   background: #fc913a;
+  color: #fff;
   padding: 2em 2em 0; }
   section#learn-more h3 {
-    color: #fff;
     margin-bottom: 1em; }
   section#learn-more h4 {
-    color: #fff;
     margin-bottom: 1em; }
   section#learn-more .recipe {
+    cursor: pointer;
     width: auto; }
     section#learn-more .recipe pre {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -ms-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s;
       background: #e1f5c4;
+      color: #000;
       margin: 0.5em 0;
       padding: 0.35em 0.75em; }
+      section#learn-more .recipe pre:hover {
+        background: #fff; }
+  section#learn-more #coming-soon {
+    margin-top: 1em; }
   section#learn-more #phone {
     background: url(../img/phone.png) no-repeat;
-    background-size: 282px 488px;
-    height: 488px;
-    margin: 2em auto 0 auto;
+    background-size: 282px 267px;
+    height: 267px;
+    margin: 2.5em auto 0 auto;
     width: 282px; }
+    section#learn-more #phone #example {
+      -webkit-transition: all 0.5s ease 0s;
+      -moz-transition: all 0.5s ease 0s;
+      -ms-transition: all 0.5s ease 0s;
+      -o-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+      background: url(../img/phone/current.jpg) no-repeat;
+      background-size: 263px auto;
+      height: 166px;
+      position: relative;
+      top: 101px;
+      left: 9px;
+      width: 263px; }
 
 footer {
   background: #ede574;
