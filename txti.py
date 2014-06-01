@@ -30,6 +30,7 @@ def login():
 
 def dologin(form):
     conn = pymongo.MongoClient(mongoaddr, mongoport)
+    print form["username"], form["password"]
     n = loginsys.get_login_key(conn, form["username"], form["password"])
     conn.disconnect()
 
@@ -61,9 +62,11 @@ def register_push():
             session = dbhelper.db_session()
             try:
                 session.register_user(request.form["username"], request.form["password"], request.form["phone"], request.form["email"])
+                session.close()
                 return dologin(request.form)
             except(Exception) as e:
                 msg = e.message
+                session.close()
         else:
             msg="not all fields filled"
     response = app.make_response(redirect("/login?failure=register?msg=%s"%( quote_plus(msg)  )) )
