@@ -31,7 +31,7 @@ def get_parser():
     parser.addFormula(Formula("weather_forecast", "Forecast for {{city}}", get_forecast))
     parser.addFormula(Formula("weather_today", "Today's forecast for {{city}}", get_forecast_today))
     parser.addFormula(Formula("reverse", "reverse {{string}}", lambda l: l[0][::-1]))
-    parser.addNoParamFormula(Formula("always_cancer", "I feel sick", "it's probably cancer (but consult a real doctor)"))
+    parser.addNoParamFormula("always_cancer", "I feel sick", "it's probably cancer (but consult a real doctor)")
     parser.addFormula(Formula("doge", "doge", get_doge_info))
     parser.addFormula(Formula("dice", "Roll {{ n }}D{{ x }}", dice))
 
@@ -40,4 +40,5 @@ def get_parser():
     return parser
 
 if __name__ == "__main__":
-    print get_parser().parse("wat")
+    print get_parser().parse("Roll 4D20")
+    print get_parser().parse("I feel sick")
