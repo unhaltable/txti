@@ -1,1 +1,1 @@
-web: python txti.py
+web: gunicorn --debug txti:app
