@@ -14,7 +14,7 @@ class Parser:
         if input[:3] == 'man':
             return self._man(re.sub('man', '', input).strip())
         self.formulae.sort(lambda x,y: len(x.pieces[0]) < len(y.pieces[0]))
-        for formula in self.formulae:8
+        for formula in self.formulae:
             mat = re.search(formula.pieces[0], input)
             if (mat != None and mat.pos == 0):
                 return self.analyze(formula, input)
