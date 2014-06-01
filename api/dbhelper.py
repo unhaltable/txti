@@ -8,7 +8,7 @@ the same machine, port listed below
 pymongo 2.7.1
 """
 
-MONGO_URL = os.environ.get('MONGOHQ_URL')
+MONGO_URL = os.environ.get('MONGOLAB_URI')
 
 
 """

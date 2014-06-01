@@ -10,7 +10,7 @@ import loginsys
 import api.dbhelper as dbhelper
 import logging
 
-MONGO_URL = os.environ.get('MONGOHQ_URL')
+MONGO_URL = os.environ.get('MONGOLAB_URI')
 
 mongoport = 27017
 mongoaddr = "localhost"
