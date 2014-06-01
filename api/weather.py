@@ -1,7 +1,7 @@
 import urllib2
 import json
 
-api_call = 'http://api.wunderground.com/api/f01e373f0b1f215e/geolookup/{0}/q/{1}/{2}.json'
+api_call = 'http://api.wunderground.com/api/f01e373f0b1f215e/geolookup/{}/q/{}/{}.json'
 metric = True
 
 
