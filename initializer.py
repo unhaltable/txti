@@ -4,6 +4,7 @@ from api.jeffwu import jeff_wu_as_a_service
 from api.cdf import get_lab
 from api.four_chan import four_chan
 
+
 def getParser():
     parser = Parser()
     parser.addFormula(Formula("rng", "rng{{minmax}}", rng))
