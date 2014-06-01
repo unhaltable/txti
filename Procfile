@@ -1,1 +1,1 @@
-web: gunicorn txti:app
+web: python txti.py
