@@ -1,5 +1,6 @@
 from urllib import quote_plus
 import sys
+import hashlib
 
 from flask import Flask, request, redirect, render_template
 import os
@@ -43,10 +44,10 @@ def login():
             return redirect("/dashboard")
     return serve_static("login.html")
 
-def dologin(form):
-    conn = pymongo.MongoClient(MONGO_URL) if MONGO_URL else pymongo.MongoClient(mongoaddr, mongoport)
-    print form["username"], form["password"]
-    n = loginsys.get_login_key(conn, form["username"], form["password"])
+def dologin(username, hashword):
+    conn = pymongo.MongoClient(mongoaddr, mongoport)
+    print username, hashword
+    n = loginsys.get_login_key(conn, username, hashword)
     conn.disconnect()
 
     print n
@@ -59,11 +60,17 @@ def dologin(form):
     return response
 
 
+def hash512(password):
+    m = hashlib.sha512()
+    m.update(password)
+    return m.hexdigest()
+
 #login push
 @app.route('/login_push', methods=["POST"])
 def login_push():
     if request.method == 'POST':
-        return dologin(request.form)
+        hashword = hash512(request.form["password"])
+        return dologin(request.form["username"], hashword)
     else:
         response = app.make_response(redirect("/login?failure=login") )
         return response
@@ -74,11 +81,12 @@ def register_push():
     msg=""
     if request.method == 'POST':
         if all([ (x in request.form.keys()) for x in ["username","password","email","phone"] ] ):
+            hashword = hash512(request.form["password"])
             session = dbhelper.db_session()
             try:
                 session.register_user(
                     request.form["username"],
-                    request.form["password"],
+                    hashword,
                     [request.form["phone"]] ,
                     request.form["email"])
                 session.close()
@@ -136,7 +144,7 @@ all_apis=[
         "api-id": "fakeapi2",
         "api-name": "Fake API 2",
         "username": None,
-        "password": None,
+        "secondfield": None,
         "thirdfield": None
     }
 ]

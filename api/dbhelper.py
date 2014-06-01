@@ -123,6 +123,13 @@ class db_session():
             }
         })
 
+    def api_data_from_uid(self, _id, api_name):
+        db = self.mongoclient.txti
+        
+        api_collection = db["api_"+api_name]
+
+        return api_collection.find_one({"_user":_id})
+
 
 
     def loginid_from_number(self, phone_number, api_name):
@@ -169,24 +176,26 @@ def joindict(*dicts):
 
 if __name__ == "__main__":
     session = db_session()
-    try:
-        uid = session.register_user(
-            "cooluser!!",
-            "this is the encoded password",
-            ["2153611301236"],
-            "fake@email.ru"
-        )
-    except (Exception) as ex:
-        uid = session.uid_by_number("2153611306")
+    """ try:
+                 uid = session.register_user(
+                     "cooluser!!",
+                     "this is the encoded password",
+                     ["2153611301236"],
+                     "fake@email.ru"
+                 )
+             except (Exception) as ex:
+                 uid = session.uid_by_number("2153611306")
+         
+         
+             session.register_api_login(uid, "fakeapi",
+                 {
+                     "fakeapi_username": "AdjectiveObject",
+                     "password_enc": "password"
+                 })
+         
+             print(session.login_from_number("2153611306", "fakeapi"))
+             print(session.login_from_uid(uid, "fakeapi"))"""
 
-
-    session.register_api_login(uid, "fakeapi",
-        {
-            "fakeapi_username": "AdjectiveObject",
-            "password_enc": "password"
-        })
-
-    print(session.login_from_number("2153611306", "fakeapi"))
-    print(session.login_from_uid(uid, "fakeapi"))
+    print session.api_data_from_uid(session.uid_by_number("asd"), "fakeapi1")
 
     session.close()
