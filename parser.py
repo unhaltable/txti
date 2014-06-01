@@ -11,17 +11,15 @@ class Parser:
         self.man = {}
 
     def parse(self, input):
-        if input[:4] == "help":
-            return 'I think you meant to use "man {{ function }}"'
         if input[:3] == 'man':
-            return self.man(re.sub("man", '', input).strip())
+            return self._man(re.sub('man', '', input).strip())
         self.formulae.sort(lambda x,y: len(x.pieces[0]) < len(y.pieces[0]))
-        for formula in self.formulae:
+        for formula in self.formulae:8
             mat = re.search(formula.pieces[0], input)
             if (mat != None and mat.pos == 0):
                 return self.analyze(formula, input)
 
-    def man(self, input):
+    def _man(self, input):
         if input == "help":
             return "lol"
         else:
