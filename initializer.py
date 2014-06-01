@@ -5,7 +5,8 @@ from api.cdf import get_lab
 from api.four_chan import four_chan
 from api.dictionary import define
 
-def getParser():
+
+def get_parser():
     parser = Parser()
     parser.addFormula(Formula("rng", "rng{{minmax}}", rng))
     parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service))
@@ -16,4 +17,4 @@ def getParser():
     return parser
 
 if __name__ == "__main__":
-    print getParser().parse("wat")
+    print get_parser().parse("wat")
