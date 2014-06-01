@@ -8,5 +8,6 @@ $("#more-button").click(function(){ scrollTo("#learn-more", 0); });
 
 $(".recipe").click(function() {
   var image = "img/phone/" + $(this).attr("data-key") + ".jpg";
-  $("#example").attr('src', image);
+  $("#example").css('background-image', 'url(' + image + ')');
 });
+

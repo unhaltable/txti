@@ -212,6 +212,7 @@ section#learn-more {
   section#learn-more h4 {
     margin-bottom: 1em; }
   section#learn-more .recipe {
+    cursor: pointer;
     width: auto; }
     section#learn-more .recipe pre {
       -webkit-border-radius: 5px;
@@ -232,14 +233,23 @@ section#learn-more {
     margin-top: 1em; }
   section#learn-more #phone {
     background: url(../img/phone.png) no-repeat;
-    background-size: 282px 488px;
+    background-size: 282px 267px;
     height: 267px;
     margin: 2.5em auto 0 auto;
     width: 282px; }
     section#learn-more #phone #example {
-      margin-left: 8px;
-      margin-top: 70px;
-      width: 282px; }
+      -webkit-transition: all 0.5s ease 0s;
+      -moz-transition: all 0.5s ease 0s;
+      -ms-transition: all 0.5s ease 0s;
+      -o-transition: all 0.5s ease 0s;
+      transition: all 0.5s ease 0s;
+      background: url(../img/phone/current.jpg) no-repeat;
+      background-size: 263px auto;
+      height: 166px;
+      position: relative;
+      top: 101px;
+      left: 9px;
+      width: 263px; }
 
 footer {
   background: #ede574;

@@ -155,6 +155,7 @@ section#learn-more {
   }
 
   .recipe {
+    cursor: pointer;
     width: auto;
 
     pre {
@@ -177,15 +178,20 @@ section#learn-more {
 
   #phone {
     background: url(../img/phone.png) no-repeat;
-    background-size: 282px 488px;
+    background-size: 282px 267px;
     height: 267px;
     margin: 2.5em auto 0 auto;
     width: 282px;
 
     #example {
-      margin-left: 8px;
-      margin-top: 70px;
-      width: 282px;
+      @include transition(all, 0.5s);
+      background: url(../img/phone/current.jpg) no-repeat;
+      background-size: 263px auto;
+      height: 166px;
+      position: relative;
+      top: 101px;
+      left: 9px;
+      width: 263px;
     }
   }
 }
