@@ -10,3 +10,4 @@ requests==2.3.0
 six==1.6.1
 twilio==3.6.6
 wsgiref==0.1.2
+fuckit==4.8.0
