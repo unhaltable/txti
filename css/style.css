@@ -44,6 +44,9 @@
     background: #ff4e50;
     height: 6em;
     text-align: left; }
+    @media (max-width: 992px) {
+      .dashboard header {
+        height: 8em; } }
     .dashboard header::before {
       height: 0;
       width: 0; }
@@ -51,6 +54,11 @@
       margin-left: 1em; }
     .dashboard header #menu {
       top: 3em; }
+      @media (max-width: 992px) {
+        .dashboard header #menu {
+          display: block;
+          position: inherit;
+          margin-left: 4em; } }
       .dashboard header #menu #user {
         margin-right: 2em; }
   .dashboard #dash {

@@ -10,6 +10,10 @@
     height: 6em;
     text-align: left;
 
+    @include breakpoint(medium) {
+      height: 8em;
+    }
+
     &::before {
       height: 0;
       width: 0;
@@ -21,6 +25,12 @@
 
     #menu {
       top: 3em;
+
+      @include breakpoint(medium)  {
+        display: block;
+        position: inherit;
+        margin-left: 4em;
+      }
 
       #user {
         margin-right: 2em;
