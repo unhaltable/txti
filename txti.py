@@ -211,7 +211,7 @@ if __name__ == '__main__':
     # Setup logging
 
     log = logging.getLogger('Rocket')
-    log.setLevel(logging.INFO)
+    log.setLevel(logging.ERROR)
     log.addHandler(logging.StreamHandler(sys.stdout))
 
-    app.run(debug=True, port=int(os.environ.get('PORT')))
+    app.run(debug=True)
