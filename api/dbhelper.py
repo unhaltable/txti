@@ -1,4 +1,6 @@
 from urlparse import urlparse
+import sys
+from flask import logging
 import os
 from pymongo import Connection, MongoClient
 
@@ -9,6 +11,9 @@ pymongo 2.7.1
 """
 
 MONGO_URL = os.environ.get('MONGOLAB_URI')
+
+# get the logger for the current Python module
+log = logging.getLogger(__name__)
 
 
 """
@@ -34,11 +39,16 @@ txti.api_fakeapi {
 class db_session():
 
     def __init__(self):
-        if MONGO_URL:
-            self.mongoclient = MongoClient(MONGO_URL)
-        else:
-            # Not on an app with the MongoHQ add-on, do some localhost action
-            self.mongoclient = MongoClient('localhost', 27017)
+        try:
+            if MONGO_URL:
+                self.mongoclient = MongoClient(MONGO_URL)
+            else:
+                # Not on an app with the MongoHQ add-on, do some localhost action
+                self.mongoclient = MongoClient('localhost', 27017)
+        except:
+            _, ex, _ = sys.exc_info()
+            log.error(ex.message)
+
 
     #############
     #   Users   #
