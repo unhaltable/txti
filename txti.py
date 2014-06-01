@@ -3,6 +3,7 @@ from api.weather import weather_current
 from flask import Flask, request, render_template, redirect, url_for
 import pymongo
 import twilio.twiml
+import loginsys, dbhelper
 
 import parser
 
@@ -25,6 +26,17 @@ def login():
         return serve_static("login.html")
     else:
         return serve_static("login.html")
+
+#login push
+@app.route('/login-push', methods=["POST"])
+def login_push():
+    pass
+
+#register push
+@app.route('/register-push', methods=["POST"])
+def register_push():
+    pass
+
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():

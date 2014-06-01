@@ -21,14 +21,14 @@
     <div id="form">
       <section id="login">
         <h3>Log in</h3>
-        <form>
+        <form target="/login-push" method="PUSH">
           <input type="text" placeholder="Username" autocorrect=off required autofocus>
           <input type="password" placeholder="Password" autocorrect=off required>
           <button type="submit">Log in</button>
         </form>
       </section><section id="register"> <!-- Weird 50% bug. -->
         <h3>Register</h3>
-        <form>
+        <form target="/register-push" method="PUSH">
           <input type="text" placeholder="Username" autocorrect=off required>
           <input type="password" placeholder="Password" autocorrect=off required>
           <input type="password" placeholder="Confirm password" autocorrect=off required>

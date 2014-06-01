@@ -15,6 +15,9 @@ class Parser:
     def analyze(self, formula, input):
         inputs = []
         i = 0
+        if len(formula.pieces) == 1:
+            inputs.append(input[re.search(formula.pieces[0], input).end(0):])
+            return formula.f(inputs)
         while i < len(formula.pieces) - 1:
             begin = re.search(formula.pieces[i], input)
             end = re.search(formula.pieces[i + 1], input)
@@ -46,9 +49,6 @@ class Formula:
         return (self.id == other.id and self.f == other.f
                 and self.pieces == other.pieces)
 
-def testfunc(list):
-    return list
-
 
 def testfunc(l):
     print l
@@ -56,8 +56,16 @@ def testfunc(l):
 
 if __name__ == "__main__":
     # below does not work
+    '''
     f = Formula("bustime", "Next bus for {{route}} {{direction}} at {{intersection}}", testfunc)
     p = Parser()
     p.addFormula(f)
     result = p.parse("Next bus for 116 North at Coronation and Lawrence")
     print(repr(result))
+    '''
+    f = Formula("rng", "rng{{min max}}", testfunc)
+    p = Parser()
+    p.addFormula(f)
+    result1 = p.parse("rng")
+    result2 = p.parse("rng 5 10")
+    print(repr(result1))
