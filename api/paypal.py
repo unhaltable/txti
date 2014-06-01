@@ -8,8 +8,9 @@ def read_full(e):
     return n
 
 def do_paypal(l):
-    amount = l[0]
-    currency = l[1]
+    t = l[0].split()
+    amount = t[0]
+    currency = t[1]
 
     paypalrestsdk.configure({
         "mode": "sandbox",  # sandbox or live
