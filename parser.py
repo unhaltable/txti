@@ -61,6 +61,11 @@ class Parser:
 
 class Formula:
     def __init__(self, id, formula, f, auth=False):
+        '''
+            f should be a function accepting a list of parameters.
+            if auth is true then it should also except a second parameter
+            with the authentication key (AKA PHONE NUMBER)
+        '''
         self.form = formula
         self.id = id
         self.f = f
