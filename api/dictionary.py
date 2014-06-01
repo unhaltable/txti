@@ -19,6 +19,9 @@ def getDefinition(word):
                 if other_node.tag == 'dt':
                     return other_node.text[1:]
 
+def define(l):
+    return getDefinition(l[0])
+
 
 if __name__ == "__main__":
     getDefinition("league")
