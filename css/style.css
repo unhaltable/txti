@@ -20,7 +20,8 @@
         margin: 1em 0;
         padding-bottom: 0.5em; }
       .login #login-form #form button {
-        display: block; }
+        display: block;
+        margin-bottom: 2em; }
         .login #login-form #form button:hover, .login #login-form #form button:focus {
           background: #fff;
           color: #fc913a; }
@@ -166,6 +167,11 @@ header {
   height: 100%;
   width: 100%; }
   header::before {
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
     background-color: rgba(255, 78, 80, 0.65);
     content: ' ';
     height: 100%;
@@ -173,6 +179,8 @@ header {
     position: absolute;
     top: 0;
     width: 100%; }
+  header:hover::before {
+    background-color: rgba(255, 104, 105, 0.65); }
   header #menu {
     font-size: 0.8em;
     position: absolute;
@@ -253,6 +261,7 @@ section#learn-more {
 
 footer {
   background: #ede574;
+  color: #222222;
   font-size: 0.9em;
   padding: 4em 1em; }
   footer #donate {
@@ -272,9 +281,9 @@ footer {
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   background: none !important;
-  border: 1px solid #000 !important;
+  border: 1px solid #222222 !important;
   border-radius: 5px !important;
-  color: #000 !important;
+  color: #222222 !important;
   font: normal 1em "Raleway", "Helvetica Neue", "Helvetica" sans-serif !important;
   text-shadow: none !important;
   padding: 0.5em 2em !important; }

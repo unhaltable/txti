@@ -97,6 +97,7 @@ header {
   width: 100%;
 
   &::before {
+    @include transition(all, 0.3s);
     background-color: rgba(255,78,80,.65);
     content: ' ';
     height: 100%;
@@ -104,6 +105,10 @@ header {
     position: absolute;
     top: 0;
     width: 100%;
+  }
+
+  &:hover::before {
+    background-color: lighten(rgba(255,78,80,.65), 5%);
   }
 
   #menu {
@@ -198,6 +203,7 @@ section#learn-more {
 
 footer {
   background: $tan;
+  color: $dark-grey;
   font-size: 0.9em;
   padding: 4em 1em;
 
@@ -222,9 +228,9 @@ footer {
 .paypal-button button {
   @include transition(all, 0.3s);
   background: none !important;
-  border: 1px solid #000 !important;
+  border: 1px solid $dark-grey !important;
   border-radius: 5px !important;
-  color: #000 !important;
+  color: $dark-grey !important;
   font: normal 1em $fonts !important;
   text-shadow: none !important;
   padding: 0.5em 2em !important;
