@@ -273,8 +273,11 @@ section#learn-more {
       section#learn-more .recipe pre:hover {
         background: #fff; }
   section#learn-more #coming-soon {
-    margin: 1em 0; }
-  section#learn-more #phone {
+    margin: 1em 0 2em 0; }
+  section#learn-more #demo #number {
+    font-size: 1.8em;
+    font-weight: 500; }
+  section#learn-more #demo #phone {
     background: url(../img/phone.png) no-repeat;
     background-size: 282px 267px;
     height: 267px;
@@ -282,9 +285,9 @@ section#learn-more {
     vertical-align: bottom;
     width: 282px; }
     @media (max-width: 992px) {
-      section#learn-more #phone {
+      section#learn-more #demo #phone {
         margin-top: 2.5em; } }
-    section#learn-more #phone #example {
+    section#learn-more #demo #phone #example {
       -webkit-transition: all 0.5s ease 0s;
       -moz-transition: all 0.5s ease 0s;
       -ms-transition: all 0.5s ease 0s;

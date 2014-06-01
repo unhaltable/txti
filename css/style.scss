@@ -215,32 +215,40 @@ section#learn-more {
   }
 
   #coming-soon {
-    margin: 1em 0;
+    margin: 1em 0 2em 0;
   }
 
-  #phone {
-    background: url(../img/phone.png) no-repeat;
-    background-size: 282px 267px;
-    height: 267px;
-    margin: 6.5em auto 0 auto;
-    vertical-align: bottom;
-    width: 282px;
-
-    @include breakpoint(medium) {
-      margin-top: 2.5em;
+  #demo {
+    #number {
+      font-size: 1.8em;
+      font-weight: 500;
     }
 
-    #example {
-      @include transition(all, 0.5s);
-      background: url(../img/phone/define.jpg) no-repeat;
-      background-size: 263px auto;
-      height: 166px;
-      position: relative;
-      top: 101px;
-      left: 9px;
-      width: 263px;
+    #phone {
+      background: url(../img/phone.png) no-repeat;
+      background-size: 282px 267px;
+      height: 267px;
+      margin: 6.5em auto 0 auto;
+      vertical-align: bottom;
+      width: 282px;
+
+      @include breakpoint(medium) {
+        margin-top: 2.5em;
+      }
+
+      #example {
+        @include transition(all, 0.5s);
+        background: url(../img/phone/define.jpg) no-repeat;
+        background-size: 263px auto;
+        height: 166px;
+        position: relative;
+        top: 101px;
+        left: 9px;
+        width: 263px;
+      }
     }
   }
+
 }
 
 footer {
