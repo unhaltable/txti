@@ -1,17 +1,27 @@
-from api.nextbus import get_bus_prediction
-from api.weather import weather_current
-from flask import Flask, request, render_template, redirect, url_for
+from urllib import quote_plus
+
+from flask import Flask, request, redirect
+import os
 import pymongo
+from initializer import get_parser
 import twilio.twiml
 import loginsys
 import api.dbhelper as dbhelper
-import parser
-from urllib import quote_plus
+
 
 mongoport = 27017
 mongoaddr = "localhost"
 
 app = Flask(__name__)
+
+# Direct logs to stdout
+if os.environ.get('HEROKU') is not None:
+    import logging
+    stream_handler = logging.StreamHandler()
+    app.logger.addHandler(stream_handler)
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('txti')
+
 
 def serve_static(filename):
     f = open("./static/"+filename)
@@ -41,7 +51,7 @@ def dologin(form):
     else:
         response = app.make_response(redirect("/login?failure=login") )
     return response
-    
+
 
 #login push
 @app.route('/login_push', methods=["POST"])
@@ -95,28 +105,23 @@ def dashboard():
 def txti():
     # Get parameters from request
     from_number = request.values.get('From', None)
-    body = request.values.get('Body', None)
+    body = request.values.get('Body', '')
+
+    # Log request
+    app.logger.info('Received SMS:\n'
+                    '{}'.format(body))
 
     # Create the response string by parsing the query, calling relevant APIs, and returning a string
-    response = get_response(body)
+    response = get_parser().parse(body)
+
+    # Log response
+    app.logger.info('Sending response:\n'
+                    '{}'.format(response))
 
     # Create the response to be sent back to the user
     resp = twilio.twiml.Response()
     resp.message(response)
     return str(resp)
-
-
-def get_response(query):
-    f = parser.Formula("bustime", "Next bus for {{route}} {{direction}} at {{intersection}}", get_bus_prediction)
-    p = parser.Parser()
-    p.addFormula(f)
-    return p.parse("Next bus for 116 North at Coronation and Lawrence")
-
-    # TODO: change this
-    return weather_current('Canada', 'Toronto')
-
-
-
 
 
 if __name__ == '__main__':
