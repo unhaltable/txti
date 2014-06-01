@@ -1,7 +1,6 @@
 import urllib2
 import xml.etree.ElementTree as ET
 
-
 api_call = "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/{0}?key=9baecd26-8583-4b74-9922-ce2a1170df9d"
 
 def query(word):
@@ -24,4 +23,5 @@ def define(l):
 
 
 if __name__ == "__main__":
-    get_definition("league")
+    print get_definition("league")
+    print define(["what", "boy"])

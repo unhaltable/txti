@@ -2,7 +2,7 @@ from api.weather import weather_current, weather_forecast_next, weather_forecast
 from parser import *
 from api.rng import rng
 from api.jeffwu import jeff_wu_as_a_service
-from api.cdf import get_lab
+from api.cdf import lab
 from api.four_chan import four_chan
 from api.dictionary import define, get_definition
 
@@ -10,7 +10,7 @@ from api.dictionary import define, get_definition
 def get_parser():
     parser = Parser()
     parser.addFormula(Formula("4chan", "4chan {{board}}", four_chan))
-    parser.addFormula(Formula("cdf", "CDF {{lab}}", get_lab))
+    parser.addFormula(Formula("cdf", "CDF {{lab}}", lab))
     parser.addFormula(Formula("dictionary", "Define {{word}}", define))
     parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service))
     parser.addFormula(Formula("rng", "rng{{minmax}}", rng))

@@ -95,11 +95,15 @@ def dashboard():
         print request.cookies["txtisessionkey"]
         if user:
             #TODO serve the dashboard
-            return "yay you're logged in"
+            return serve_dashboard()
         else:
             response = app.make_response(redirect("/login?msg=login+expired"))
             response.set_cookie("txtisessionkey", value="", expires=0)
             return response
+
+def serve_dashboard():
+    base_string = serve_static("dashboard/index.html")
+    return base_string
 
 @app.route('/api', methods=['GET', 'POST'])
 def txti():

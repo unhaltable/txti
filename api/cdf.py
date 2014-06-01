@@ -56,7 +56,7 @@ def parse():
             elif item == 'gerstein':
                 lab.set_name('Gerstein')
             else:
-                lab.set_name(item)               
+                lab.set_name(item)
         elif i == 1:
             lab.set_avail(item)
         elif i == 2:
@@ -79,12 +79,18 @@ def get_lab(query):
             return str(lab)
     return "Could not find {0}".format(query)
 
+def lab(l):
+    return get_lab(l[0])
+
 
 if __name__ == '__main__':
     labs = parse()
-    for lab in labs:
-        print lab
+    #for lab in labs:
+    #    print lab
 
     print get_lab("BA2200")
+    print get_lab("BA3200")
     print get_lab("NX")
     print get_lab("awjrlarwa")
+
+    print lab(["BA3200"])
