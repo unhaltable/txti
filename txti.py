@@ -31,10 +31,22 @@ def serve_static(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return serve_static("index.html")
+    name = "login/register"
+    if("txtisessionkey" in request.cookies.keys()):
+        helper = dbhelper.db_session()
+        userid = loginsys.is_key_valid(helper.mongoclient, request.cookies["txtisessionkey"])
+        user = helper.user_from_uid(userid)
+        helper.close()
+        name = user["username"]
+    return render_template("index.html", topright_text=name)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if("txtisessionkey" in request.cookies.keys()):
+        helper = dbhelper.db_session()
+        userid = loginsys.is_key_valid(helper.mongoclient, request.cookies["txtisessionkey"])
+        if userid:
+            return redirect("/dashboard")
     return serve_static("login.html")
 
 def dologin(form):
@@ -107,7 +119,6 @@ def dashboard():
 
         print request.cookies["txtisessionkey"]
         if user:
-            #TODO serve the dashboard
             return serve_dashboard(user)
         else:
             response = app.make_response(redirect("/login?msg=login+expired"))
@@ -116,26 +127,63 @@ def dashboard():
 
 all_apis=[
     {
+        "api-id": "facebook",
+        "api-name": "Facebook",
+        "email": None,
+        "password": None
+    },
+    {
+        "api-id": "fakeapi1",
         "api-name": "Fake API 1",
         "username": None,
         "password": None
     },
     {
+        "api-id": "fakeapi2",
         "api-name": "Fake API 2",
         "username": None,
-        "password": None
+        "password": None,
+        "thirdfield": None
     }
 ]
 
 def serve_dashboard(user):
-    formatted_phones = ["(%c%c%c) %c%c%c-%c%c%c%c" % tuple(map(ord, numb)) for numb in user["phone_numbers"]]
+    #formatted_phones = ["(%c%c%c) %c%c%c-%c%c%c%c" % tuple(map(ord, numb)) for numb in user["phone_numbers"]]
     base_string = render_template(
         "dashboard.html",
         username=user["username"],
-        phonenumbers=formatted_phones,
+        userapis=user["apis"].keys(),
+        phonenumbers=user["phone_numbers"],
         allapis=all_apis)
     #TODO SERV
     return base_string
+
+@app.route('/addapi', methods=['POST'])
+def addapi():
+    if("txtisessionkey" in request.cookies.keys()):
+        helper = dbhelper.db_session()
+        userid = loginsys.is_key_valid(helper.mongoclient, request.cookies["txtisessionkey"])
+        if "api-id" in request.form.keys():
+            proper_apis = filter(lambda x: x["api-id"] == request.form["api-id"], all_apis)
+            if len(proper_apis)>0:
+                proper_api = proper_apis[0]
+                print construct_to_fit(proper_api, request.form)
+                helper.register_api_login(userid, proper_api["api-id"], construct_to_fit(proper_api, request.form))
+                helper.close();
+                return "successfully registered!"
+            print "shit"
+            return "error finding app-id"
+        print "shit!"
+        return "api-id DNE tho."
+    else:
+        return "not logged in!"
+
+def construct_to_fit(api, parts):
+    new = {}
+    for i in api.keys():
+        if i!="api-name" and i!= "api-id":
+            new[i]=(parts[i])
+    return new
 
 @app.route('/api', methods=['GET', 'POST'])
 def txti():
