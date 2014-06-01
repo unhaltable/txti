@@ -37,7 +37,7 @@ def dologin(form):
 
     if n[0]:
         response = app.make_response(redirect("/dashboard") )
-        response.set_cookie("txtisessionkey", value=n[1])
+        response.set_cookie("txtisessionkey", value=n[1], expires=n[2])
     else:
         response = app.make_response(redirect("/login?failure=login") )
     return response
@@ -76,16 +76,20 @@ def register_push():
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     #chck cookie exists
-    if not hasattr(request, 'txtisessionkey'):
+    if not 'txtisessionkey' in request.cookies.keys():
         return app.make_response(redirect("/login")) 
     else:
         client = pymongo.MongoClient(mongoaddr, mongoport)
-        user = login.is_key_valid(request.txtisessionkey)
+        user = loginsys.is_key_valid(client, request.cookies["txtisessionkey"])
+        client.disconnect()
+        print request.cookies["txtisessionkey"]
         if user:
             #TODO serve the dashboard
             return "yay you're logged in"
         else:
-            return app.make_response(redirect("/login"))
+            response = app.make_response(redirect("/login?msg=login+expired"))
+            response.set_cookie("txtisessionkey", value="", expires=0)
+            return response
 
 @app.route('/api', methods=['GET', 'POST'])
 def txti():
