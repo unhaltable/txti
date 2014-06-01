@@ -11,7 +11,7 @@ def get_parser():
     parser = Parser()
     parser.addFormula(Formula("4chan", "4chan {{board}}", four_chan))
     parser.addFormula(Formula("cdf", "CDF {{lab}}", get_lab))
-    parser.addFormula(Formula("dictionary", "Define {{word}}", get_definition))
+    parser.addFormula(Formula("dictionary", "Define {{word}}", define))
     parser.addFormula(Formula("jeff_wu_as_a_service", "Jeff Wu", jeff_wu_as_a_service))
     parser.addFormula(Formula("rng", "rng{{minmax}}", rng))
     parser.addFormula(Formula("weather_current", "Current weather in {{city}}", weather_current))
