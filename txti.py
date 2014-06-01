@@ -1,4 +1,5 @@
 from urllib import quote_plus
+import sys
 
 from flask import Flask, request, redirect, render_template
 import os
@@ -7,6 +8,7 @@ from initializer import get_parser
 import twilio.twiml
 import loginsys
 import api.dbhelper as dbhelper
+import logging
 
 
 mongoport = 27017
@@ -215,4 +217,10 @@ def txti():
 
 
 if __name__ == '__main__':
+    # Setup logging
+
+    log = logging.getLogger('Rocket')
+    log.setLevel(logging.INFO)
+    log.addHandler(logging.StreamHandler(sys.stdout))
+
     app.run(debug=True)
