@@ -2,6 +2,7 @@ from api.nextbus import get_bus_prediction
 from api.weather import weather_current
 from flask import Flask, request, render_template, redirect, url_for
 import pymongo
+from initializer import get_parser
 import twilio.twiml
 import loginsys
 import api.dbhelper as dbhelper
@@ -29,6 +30,7 @@ def login():
 
 def dologin(form):
     conn = pymongo.MongoClient(mongoaddr, mongoport)
+    print form["username"], form["password"]
     n = loginsys.get_login_key(conn, form["username"], form["password"])
     conn.disconnect()
 
@@ -60,9 +62,11 @@ def register_push():
             session = dbhelper.db_session()
             try:
                 session.register_user(request.form["username"], request.form["password"], request.form["phone"], request.form["email"])
+                session.close()
                 return dologin(request.form)
             except(Exception) as e:
                 msg = e.message
+                session.close()
         else:
             msg="not all fields filled"
     response = app.make_response(redirect("/login?failure=register?msg=%s"%( quote_plus(msg)  )) )
@@ -88,10 +92,10 @@ def dashboard():
 def txti():
     # Get parameters from request
     from_number = request.values.get('From', None)
-    body = request.values.get('Body', None)
+    body = request.values.get('Body', '')
 
     # Create the response string by parsing the query, calling relevant APIs, and returning a string
-    response = get_response(body)
+    response = get_parser().parse(body)
 
     # Create the response to be sent back to the user
     resp = twilio.twiml.Response()

@@ -10,7 +10,7 @@ def query(word):
     f.close()
     return ET.fromstring(xml_string)
 
-def getDefinition(word):
+def get_definition(word):
     parsed_xml = query(word)
     entry = parsed_xml[0]
     for node in entry:
@@ -24,4 +24,4 @@ def define(l):
 
 
 if __name__ == "__main__":
-    getDefinition("league")
+    get_definition("league")
