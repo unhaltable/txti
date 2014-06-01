@@ -32,13 +32,17 @@
   </header>
   <section id="learn-more">
     <h3>No Internet? No problem.</h3>
-    <h4>Available formulas:</h4>
-    <div class="recipe"><pre>Next bus for {{route}} at {{intersection}}</pre></div>
-    <div class="recipe"><pre>Current weather in {{city}}</pre></div>
-    <div class="recipe"><pre>Today's forecast for {{city}}</pre></div>
-    <div class="recipe"><pre>What is {{query}}</pre></div>
-    <div class="recipe"><pre>Define {{word}}</pre></div>
-    <div class="recipe"><pre>Send {{dollars}} to {{email}}</pre></div>
+    <h4>Available formulae:</h4>
+    <div class="recipe" title="TTC route information"><pre>Next bus for {{route}} at {{intersection}}</pre></div>
+    <div class="recipe" title="The current weather conditions"><pre>Current weather in {{city}}</pre></div>
+    <div class="recipe" title="The day's forecast"><pre>Today's forecast for {{city}}</pre></div>
+    <div class="recipe" title="The next period of time's forecast"><pre>Forecast for {{city}}</pre></div>
+    <div class="recipe" title="Information from Wolfram Alpha"><pre>What is {{query}}</pre></div>
+    <div class="recipe" title="Merriam-Webster definitions"><pre>Define {{word}}</pre></div>
+    <div class="recipe" title="Send money to another PayPal user (must authorize PayPal first)"><pre>Send {{dollars}} to {{email}}</pre></div>
+    <div class="recipe" title="Random number between 0 and 1"><pre>rng</pre></div>
+    <div class="recipe" title="Random number between x and y"><pre>rng {{x}} {{y}}</pre></div>
+    <p id="coming-soon">...and more coming soon!</p>
     <div id="phone"></div>
   </section>
   <footer>
@@ -56,7 +60,9 @@
     </div>
     <p id="disclosure">Standard SMS fees apply.</p>
     <p>Created with love by Team Unhaltable at <a href="https://2014.battlehack.org/toronto">BattleHack 2014 Toronto</a>.</p>
-    <p>Also check out <a href="http://www.cryptr.ca/">Cryptr</a> and <a href="http://www.cryptr.ca/uv">Ultraviolet</a>!</p>
+    <p>
+      <a href="https://www.twitter.com/arkon">@arkon</a> &middot; <a href="https://www.twitter.com/spe_">@spe_</a> &middot; <a href="https://www.twitter.com/jwebbed">@jwebbed</a> &middot; <a href="https://www.twitter.com/AdjectiveObject">@AdjectiveObject</a>
+    </p>
   </footer>
   <script src="js/script.js"></script>
 </body>

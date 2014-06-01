@@ -205,12 +205,11 @@ header {
 
 section#learn-more {
   background: #fc913a;
+  color: #fff;
   padding: 2em 2em 0; }
   section#learn-more h3 {
-    color: #fff;
     margin-bottom: 1em; }
   section#learn-more h4 {
-    color: #fff;
     margin-bottom: 1em; }
   section#learn-more .recipe {
     width: auto; }
@@ -224,15 +223,18 @@ section#learn-more {
       -o-transition: all 0.3s ease 0s;
       transition: all 0.3s ease 0s;
       background: #e1f5c4;
+      color: #000;
       margin: 0.5em 0;
       padding: 0.35em 0.75em; }
       section#learn-more .recipe pre:hover {
         background: #fff; }
+  section#learn-more #coming-soon {
+    margin-top: 1em; }
   section#learn-more #phone {
     background: url(../img/phone.png) no-repeat;
     background-size: 282px 488px;
     height: 488px;
-    margin: 2em auto 0 auto;
+    margin: 2.5em auto 0 auto;
     width: 282px; }
 
 footer {
