@@ -12,7 +12,7 @@ class Parser:
         # self.auth
 
     def parse(self, input, auth=None):
-        self.auth = None
+        self.auth = auth
         if input[:3] == 'man':
             return self._man(re.sub('man', '', input).strip())
         self.formulae.sort(lambda x,y: len(x.pieces[0]) < len(y.pieces[0]))

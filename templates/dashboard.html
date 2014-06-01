@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>txti: Dashboard</title>
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Raleway:400,300,500,600'>
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Source+Code+Pro'>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" type="image/png" href="static/img/favicon.png">
+  <!--[if lt IE 9]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+  <![endif]-->
+  <script src="static/js/paypal-button.min.js"></script>
+
+  <style>
+    /*I'm so sorry for doing this...*/
+    #addapi{
+      position:relative;
+      top:0px;
+      opacity:1;
+      transition:all 0.3s;
+    }
+
+    #addapi.hidden{
+      opacity:0;
+      top:20px;
+    }
+
+    .apisection{
+      postion:relative;
+      overflow:hidden;
+      max-height:1000px;
+      transition: all 0.3s;
+    }
+
+    .apisection.hidden{
+      height:0px  !important;
+      opacity:0  !important;
+      margin:0px !important;
+      padding:0px !important;
+    }
+
+    select{
+      height:44px;
+      width:103px;
+      border:1px solid ;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      font-family: "Raleway", "Helvetica Neue", "Helvetica" sans-serif;
+    }
+
+    button:disabled{
+      cursor:default;
+      background-color:#CD3136; /*Placeholder*/
+    }
+
+  </style>
+
+  <script src="static/js/jquery.min.js"></script>
+</head>
+<body class="dashboard">
+  <header>
+    <h1><a href="/">txti</a> dashboard</h1>
+    <div id="menu">
+      <span id="user">{{ username }}</span>
+      <a href="/logout">Log out</a>
+    </div>
+  </header>
+  <section id="dash">
+    <section>
+      <section id="numbers">
+      <h4>Phone Numbers</h4>
+        {% for number in phonenumbers%}
+        <p>{{number}}</p>
+        {% endfor %}
+      </section>
+      <section>
+        <h4>Logins</h4>
+        <p>txti lets you use access a number of other services through your phone. sign into them here and gain access to a large suite of new features.</p>
+      </section>
+
+      {% for api in userapis %}
+      <section class=".apiform">
+        <form>
+          <!-- TODO fill contents of api button-->
+          {% for apin in allapis %}
+            {% if apin['api-id'] == api %}
+              <h4>{{apin['api-name']}} (edit)</h4>
+              <input type="hidden" name="api-id" value="{{api}}">
+              {%for field in apin %}
+                {% if field != 'api-id' and field != 'api-name'%}
+                  {% if field == 'password' %}
+                    <input type="password" name="{{field}}" placeholder="{{field}}">
+                  {% else %}
+                    <input type="field" name="{{field}}" placeholder="{{field}}">
+                  {% endif %}
+                {% endif %}
+              {%endfor%}
+            {% endif %}
+          {% endfor %}
+          <button type="submit">Overwrite</button>
+        </form> 
+      </section>
+      {% endfor %}
+
+    </section>
+    <section>
+        <section id="addapi">
+        <select>
+          {% for i in range(allapis|length) %}
+            {% if (not allapis[i]["api-id"] in userapis) %}
+              <option value ="{{ i }}"> {{ allapis[i]["api-name"] }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <button id="addapi-button">Add Service Login</button>
+        </section>
+
+    </section>
+  </section>
+  <script src="static/js/script.js"></script>
+  <script>
+  //behavior script for dashboard
+  //this is all managing the DOM
+  var None = null;
+  var apis = {{ allapis|safe }};
+
+  function addSection(x) {
+    var apiTemplate = apis[x];
+
+    var baseElement = $(
+      "<section class=\"apisection hidden\"><h4>"+
+        apiTemplate['api-name']+
+        "</h4></section>");
+    var form = $("<form></form>");
+    form.append($("<input type=\"hidden\" name=\"api-id\" value=\""+apiTemplate['api-id']+"\">"))
+
+    for (var i in apis[x]){
+      if (i != "api-name" && i!= "api-id"){
+        if(i == "password"){
+          form.append(
+            $("<input type=\"password\" name=\"password\" placeholder=\"Password\" autocorrect=off required>"));
+        } else{
+          form.append($("<input type=\"text\" name=\""+
+            i+
+            "\" placeholder=\""+
+            i+
+            "\">"));
+        }
+      }
+    }
+
+    form.append($("<button type=\"submit\">Save</button>"));
+
+    form.submit(captureForm);
+
+    $(baseElement).append(form);
+    $(baseElement).insertBefore("#addapi");
+
+    setTimeout(function(){
+      $(baseElement).removeClass("hidden");
+    },100)
+
+  }
+
+  $("#addapi-button").click(function(){
+    var dropdown = $("#addapi select");
+    var selected = $("option", dropdown).filter(":selected");
+    addSection(selected[0].value);
+    selected.remove();
+
+    if( dropdown.children().length<=0 ){
+      $("#addapi").addClass("hidden");
+
+      setTimeout(function(){
+        $("#addapi").remove()
+      },5000);
+    }
+  })
+
+  //capturing the submission of the update forms
+  $("form").submit(captureForm);
+  function captureForm(evt){
+    evt.preventDefault();
+    $("button", this).attr("disabled", "disabled");
+    $("button", this).text("saved");
+    $.ajax({
+      type: "POST",
+      url: "/addapi",
+      data: $(this).serialize(),
+      error:function(e){
+        console.log(e);
+      }
+    });
+  }
+  </script>
+
+  <script src="https://www.paypalobjects.com/js/external/api.js"></script>
+  <script>
+  paypal.use( ["login"], function(login) {
+    login.render ({
+      "appid": "ASADDBDt4pU4eFXwJq16hXlXl5keoZ7VbJyasjinFsdFnILS_4MkMhDcUqtB",
+      "authend": "sandbox",
+      "scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
+      "containerid": "login",
+      "locale": "en-us",
+      "returnurl": "http://www.unhaltable.com/"
+    });
+  });
+  </script>
+</body>
+</html>

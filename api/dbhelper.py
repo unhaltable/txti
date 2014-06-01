@@ -136,6 +136,9 @@ class db_session():
             self.loginid_from_uid(_id, api_name)
             })
 
+    def user_from_uid(self, uid):
+        return self.mongoclient.txti["users"].find_one({"_id":uid})
+
     #################
     #  Etc Helpers  #
     #################

@@ -29,7 +29,7 @@ def is_key_valid(client, key):
         return keyobj['userid']
     else:
         print "key expired", time.time(), float(keyobj['expires'])
-        client.txti.keys.remove({"uuid":key})
+        kill_key(client, key)
         return False
 
 """
@@ -46,6 +46,10 @@ def make_key(client, uid):
     exp = time.time()+(60*60)
     client.txti.keys.insert({"userid":uid, "uuid" :luuid, "expires": exp})
     return (luuid, exp)
+
+def kill_key(client, key):
+    client.txti.keys.remove({"uuid":key})
+
 
 """
 client: mongoclient
