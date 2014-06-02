@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <title>txti: Information without Internet</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:url" content="http://unhaltable.com/">
   <meta property="og:title" content="txti: Information without Internet">
-  <meta property="og:image" content="http://unhaltable.com/statimg/favicon.png">
+  <meta property="og:image" content="http://unhaltable.com/static/img/favicon.png">
   <meta property="og:description" content="Access the world of information without an Internet connection.">
   <meta property="og:type" content="article">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Raleway:400,300,500'>
@@ -16,7 +17,6 @@
   <!--[if lt IE 9]>
     <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
   <![endif]-->
-  <script src="static/js/paypal-button.min.js"></script>
   <script src="static/js/jquery.min.js"></script>
 </head>
 <body>
@@ -43,7 +43,7 @@
       <div class="recipe" data-key="define" title="Merriam-Webster definitions"><pre>Define {{word}}</pre></div>
       <div class="recipe" data-key="cdf" title="Get information about available University of Toronto CDF machines"><pre>CDF {{lab}}</pre></div>
       <div class="recipe" data-key="bitly" title="Shorten a URL with bit.ly"><pre>Shorten {{url}}</pre></div>
-      <div class="recipe" data-key="rotten" title="Information about a movie from Rotten Tomatoes"><pre>Rotten Toy Story 3</pre></div>
+      <div class="recipe" data-key="rotten" title="Information about a movie from Rotten Tomatoes"><pre>Rotten {{movie}}</pre></div>
       <div class="recipe" data-key="rng" title="Random number between 0 and 1"><pre>rng</pre></div>
       <div class="recipe" data-key="rng2" title="Random number between x and y"><pre>rng {{x}} {{y}}</pre></div>
       <div class="recipe" data-key="die" title="Roll n die, each with x number of faces"><pre>Roll {{n}} D {{x}}</pre></div>
@@ -52,7 +52,6 @@
       <div class="recipe" data-key="calc" title="Perform calculations"><pre>Calc {{formula}}</pre></div>
       <div class="recipe" data-key="tip" title="Calculate tip"><pre>Tip ${{amount}} {{percent}}%</pre></div>
       <div class="recipe" data-key="reverse" title="Reverse a string"><pre>Reverse {{string}}</pre></div>
-      <div class="recipe" data-key="donate" title="Donate to Unhaltable! (Requires registration and PayPal authentication)"><pre>Donate {{amount}} {{currency}}</pre></div>
       <!-- 4chan {{board}}, Jeff Wu, I feel sick, man -->
       <p id="coming-soon">...and more coming soon!</p>
       <p id="list">Tip: use <tt>list</tt> to see all available commands.</p>
@@ -66,18 +65,6 @@
     </section>
   </section>
   <footer>
-    <div id="donate">
-      <script src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=ey.cheung@outlook.com"
-        data-button="donate"
-        data-name="Donate"
-        data-text="Donate via PayPal"
-        data-quantity="1"
-        data-amount="5.00"
-        data-currency="CAD"
-        data-shipping="0"
-        data-tax="0"
-      ></script>
-    </div>
     <p id="disclosure">Standard SMS fees apply.</p>
     <p>Created with love by Team Unhaltable at <a href="https://2014.battlehack.org/toronto">BattleHack 2014 Toronto</a>.</p>
     <p>

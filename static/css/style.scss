@@ -267,10 +267,6 @@ footer {
   font-size: 0.9em;
   padding: 4em 1em;
 
-  #donate {
-    margin-bottom: 4em;
-  }
-
   #disclosure {
     font-size: 0.75em;
   }
@@ -282,25 +278,5 @@ footer {
   a {
     border-bottom: 1px dotted #777;
     color: #000;
-  }
-}
-
-.paypal-button button {
-  @include transition(all, 0.3s);
-  background: none !important;
-  border: 1px solid $dark-grey !important;
-  border-radius: 5px !important;
-  color: $dark-grey !important;
-  font: normal 1em $fonts !important;
-  text-shadow: none !important;
-  padding: 0.5em 2em !important;
-
-  &::before,
-  &::after {
-    background: none !important;
-  }
-
-  &:hover {
-    background: #fff !important;
   }
 }
