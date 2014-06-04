@@ -1,6 +1,7 @@
 @import 'constants';
 @import 'mixins';
 
+@import 'formulae';
 @import 'login';
 @import 'dashboard';
 
@@ -96,6 +97,19 @@ button {
   padding: 1em 2em;
 }
 
+.button {
+  @include border-radius(5px);
+  @include transition(all, 0.3s);
+  border: 1px solid #fff;
+  cursor: pointer;
+  padding: 1em 2em;
+
+  &:hover {
+    background: #fff;
+    color: $red;
+  }
+}
+
 header {
   background: $red url(../img/hero.jpg) no-repeat;
   background-size: cover;
@@ -142,20 +156,12 @@ header {
       margin-bottom: 3.5em;
     }
 
-    .button {
-      @include border-radius(5px);
-      @include transition(all, 0.3s);
-      border: 1px solid #fff;
-      cursor: pointer;
-      padding: 1em 2em;
-
-      &:hover {
-        background: #fff;
-        color: $red;
-      }
+    #beta {
+      position: relative;
+      right: -65px;
+      top: -46px;
     }
   }
-
 }
 
 section#learn-more {
@@ -216,15 +222,11 @@ section#learn-more {
     width: auto;
   }
 
-  #coming-soon {
-    margin: 1em 0 1em 0;
-  }
+  #more {
+    margin: 2em 0 3em 0;
 
-  #list {
-    margin: 1em 0 2em 0;
-
-    tt {
-      margin: 0 0.25em;
+    .button:hover {
+      color: $orange;
     }
   }
 
@@ -238,7 +240,7 @@ section#learn-more {
       background: url(../img/phone.png) no-repeat;
       background-size: 282px 267px;
       height: 267px;
-      margin: 7.5em auto 0 auto;
+      margin: 5em auto 0 auto;
       vertical-align: bottom;
       width: 282px;
 
@@ -248,7 +250,7 @@ section#learn-more {
 
       #example {
         @include transition(all, 0.5s);
-        background: url(../img/phone/define.jpg) no-repeat;
+        background: url(../img/phone/ttc.jpg) no-repeat;
         background-size: 263px auto;
         height: 166px;
         position: relative;
@@ -282,25 +284,5 @@ footer {
   a {
     border-bottom: 1px dotted #777;
     color: #000;
-  }
-}
-
-.paypal-button button {
-  @include transition(all, 0.3s);
-  background: none !important;
-  border: 1px solid $dark-grey !important;
-  border-radius: 5px !important;
-  color: $dark-grey !important;
-  font: normal 1em $fonts !important;
-  text-shadow: none !important;
-  padding: 0.5em 2em !important;
-
-  &::before,
-  &::after {
-    background: none !important;
-  }
-
-  &:hover {
-    background: #fff !important;
   }
 }

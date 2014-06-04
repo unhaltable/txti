@@ -1,0 +1,30 @@
+.formulae {
+  background: $orange;
+
+  header {
+    background: $red;
+    height: 6em;
+    text-align: left;
+
+    &::before {
+      height: 0;
+      width: 0;
+    }
+
+    h1 {
+      margin-left: 1em;
+    }
+  }
+
+  #coming-soon {
+    margin: 1em 0;
+  }
+
+  #list {
+    margin: 1em 0 2em 0;
+
+    tt {
+      margin: 0 0.25em;
+    }
+  }
+}

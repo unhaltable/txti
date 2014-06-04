@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <title>txti [beta]: Information without Internet</title>
+  <title>txti [beta]: Formulae</title>
   <meta property="og:url" content="http://unhaltable.com/">
   <meta property="og:title" content="txti: Information without Internet">
   <meta property="og:image" content="http://unhaltable.com/img/favicon.png">
@@ -11,44 +11,44 @@
   <meta property="og:type" content="article">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Raleway:400,300,500'>
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Source+Code+Pro'>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
   <!--[if lt IE 9]>
     <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
   <![endif]-->
-  <script src="js/jquery.min.js"></script>
+  <script src="../js/jquery.min.js"></script>
 </head>
-<body>
+<body class="formulae">
   <header>
+    <h1><a href="/" alt="Home" title="Go back to home page">txti</a></h1>
     <div id="menu">
-      <a href="/login.html">Login/Register</a>
-    </div>
-    <div id="header-info">
-      <h1>txti</h1>
-      <span id="beta">[beta]</span>
-      <h2>Information without the Internet</h2>
-      <h4>+1 (437) 800-2585</h4>
-      <a class="button" id="more-button">Learn more</a>
+      <span id="user">Username</span>
+      <a href="/">Log out</a>
     </div>
   </header>
   <section id="learn-more">
-    <h3>No Internet? No problem.</h3>
-    <h4>Check out some of things you can do:</h4>
+    <h3>Just text +1 (437) 800-2585</h3>
+    <h4>Check out some of these formulae:</h4>
     <section id="recipes">
       <div class="recipe" data-key="ttc" title="TTC route information"><pre>Next bus for {{route}} {{direction}} at {{intersection}}</pre></div>
       <div class="recipe" data-key="current" title="The current weather conditions"><pre>Current weather in {{city}}</pre></div>
       <div class="recipe" data-key="forecast" title="The day's forecast"><pre>Today's forecast for {{city}}</pre></div>
+      <div class="recipe" data-key="next_forecast" title="The next period of time's forecast"><pre>Forecast for {{city}}</pre></div>
+      <div class="recipe" data-key="define" title="Merriam-Webster definitions"><pre>Define {{word}}</pre></div>
+      <div class="recipe" data-key="cdf" title="Get information about available University of Toronto CDF machines"><pre>CDF {{lab}}</pre></div>
+      <div class="recipe" data-key="bitly" title="Shorten a URL with bit.ly"><pre>Shorten {{url}}</pre></div>
+      <div class="recipe" data-key="rotten" title="Information about a movie from Rotten Tomatoes"><pre>Rotten Toy Story 3</pre></div>
       <div class="recipe" data-key="rng" title="Random number between 0 and 1"><pre>rng</pre></div>
       <div class="recipe" data-key="rng2" title="Random number between x and y"><pre>rng {{x}} {{y}}</pre></div>
       <div class="recipe" data-key="die" title="Roll n die, each with x number of faces"><pre>Roll {{n}} D {{x}}</pre></div>
       <div class="recipe" data-key="btc" title="Get information about Bitcoin"><pre>BTC</pre></div>
+      <div class="recipe" data-key="doge" title="Get information about Dogecoin"><pre>doge</pre></div>
+      <div class="recipe" data-key="calc" title="Perform calculations"><pre>Calc {{formula}}</pre></div>
       <div class="recipe" data-key="tip" title="Calculate tip"><pre>Tip ${{amount}} {{percent}}%</pre></div>
-      <div id="more">
-        <a class="button" href="/formulae/" title="See all of the available formulae">See more</a>
-      </div>
+      <!-- 4chan {{board}}, Jeff Wu, I feel sick -->
+      <p id="coming-soon">...and more coming soon!</p>
+      <p id="list">Tip: use <tt>list</tt> to see all available commands.</p>
     </section><section id="demo">
-      <h5>Ask. Receive.</h5>
-      <h5 id="number">+1 (437) 800-2585</h5>
       <div id="phone">
         <div id="example"></div>
       </div>
@@ -61,6 +61,6 @@
       <a href="https://www.twitter.com/arkon">@arkon</a> &middot; <a href="https://www.twitter.com/spe_">@spe_</a> &middot; <a href="https://www.twitter.com/jwebbed">@jwebbed</a> &middot; <a href="https://www.twitter.com/AdjectiveObject">@AdjectiveObject</a>
     </p>
   </footer>
-  <script src="js/script.js"></script>
+  <script src="../js/script.js"></script>
 </body>
 </html>
