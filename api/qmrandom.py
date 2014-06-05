@@ -10,7 +10,6 @@ def _getSeed():
     j = r.json()
     num = j["data"][0]
     i = int(num, 16)
-    print(i)
     return i
 
 class qmrandom(random.Random):
