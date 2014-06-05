@@ -15,12 +15,12 @@ def _getSeed():
 
 class qmrandom(random.Random):
 
-    def seed(self):
-        super.seed(_getSeed())
+    def seed(self, x=None):
+        super(qmrandom, self).seed(_getSeed())
 
     def random(self):
         self.seed()
-        return super.random()
+        return super(qmrandom, self).random()
 
 _inst = qmrandom()
 seed = _inst.seed
@@ -46,4 +46,5 @@ setstate = _inst.setstate
 getrandbits = _inst.getrandbits
 
 if __name__ == "__main__":
+    x = qmrandom()
     _getSeed()
