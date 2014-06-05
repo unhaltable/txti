@@ -18,6 +18,7 @@ class qmrandom(random.Random):
         super(qmrandom, self).seed(_getSeed())
 
     def random(self):
+        self.seed()
         return super(qmrandom, self).random()
 
 _inst = qmrandom()
