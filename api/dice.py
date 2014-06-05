@@ -1,10 +1,10 @@
-import random
+import api.qmrandom
 
 def dice(l):
     i = int(l[0])
     nums = []
     while i > 0:
-        nums.append(random.randint(1, int(l[1])))
+        nums.append(api.qmrandom.randint(1, int(l[1])))
         i-=1
 
     return reduce(lambda a,b: str(a) + ' ' + str(b), nums)
