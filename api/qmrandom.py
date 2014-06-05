@@ -1,12 +1,6 @@
 import random
 import requests
 
-
-
-url = "https://qrng.anu.edu.au/API/jsonI.php?length={}&type={}&size={}"
-
-
-
 class qmrandom(random.Random):
 
     def __init__(self):
