@@ -3,23 +3,34 @@ import requests
 
 
 
-url = "https://qrng.anu.edu.au/API/jsonI.php?length=1&type=hex16&size=4"
+url = "https://qrng.anu.edu.au/API/jsonI.php?length={}&type={}&size={}"
 
-def _getSeed():
-    r = requests.get(url, verify=False)
-    j = r.json()
-    num = j["data"][0]
-    i = int(num, 16)
-    return i
+
 
 class qmrandom(random.Random):
 
+    def __init__(self):
+        self.nums = []
+        super(qmrandom, self).__init__()
+
     def seed(self, x=None):
-        super(qmrandom, self).seed(_getSeed())
+        pass
 
     def random(self):
-        self.seed()
-        return super(qmrandom, self).random()
+        if (len(self.nums) == 0):
+            self._getNums()
+        return int(self.nums.pop(), 16) / (16 ** 8)
+
+    def getstate(self):
+        pass
+
+    def setstate(self):
+        pass
+
+    def _getNums(self):
+        r = requests.get("https://qrng.anu.edu.au/API/jsonI.php?length=100&type=hex16&size=4", verify=False)
+        j = r.json()
+        self.nums = j["data"]
 
 _inst = qmrandom()
 seed = _inst.seed
@@ -46,4 +57,6 @@ getrandbits = _inst.getrandbits
 
 if __name__ == "__main__":
     x = qmrandom()
-    _getSeed()
+    for i in range(1000):
+        print(x.random())
+
