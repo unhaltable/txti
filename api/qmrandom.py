@@ -1,7 +1,6 @@
 import random
 import requests
 
-
 class qmrandom(random.Random):
 
     def __init__(self):
@@ -27,10 +26,15 @@ class qmrandom(random.Random):
             raise ValueError('number of bits must be greater than zero')
         if k != int(k):
             raise TypeError('number of bits should be an integer')
-        num = (k + 15) // 16                       # bits / 8 and rounded up
-        r = requests.get("https://qrng.anu.edu.au/API/jsonI.php?length=1&type=hex16&size={}".format(num / 2),
+        num = (k + 7) // 8                      # bits / 8 and rounded up
+        r = requests.get("https://qrng.anu.edu.au/API/jsonI.php?length={}&type=uint8&".format(num),
                          verify=False)
-        return int(r.json()["data"][0], 16)
+        n = r.json()['data']
+        i = 0
+        for l in range(len(n)):
+            i += n[l] << (8 * l)
+
+        return i >> (num * 8 - k)
 
     def _getNums(self):
         r = requests.get("https://qrng.anu.edu.au/API/jsonI.php?length=100&type=hex16&size=4", verify=False)
@@ -62,5 +66,6 @@ getrandbits = _inst.getrandbits
 
 if __name__ == "__main__":
     x = qmrandom()
-    print(x.getrandbits(100))
+    for i in range(100):
+        print(x.randint(0, 100))
 
