@@ -1,15 +1,15 @@
-import urllib2
-import json
+import requests
+from xml.etree import ElementTree
 
 
-def get_json_data(url):
-    f = urllib2.urlopen(url)
-    json_string = f.read()
-    f.close()
-    return json.loads(json_string)
+def get_json_data(url, verify=True):
+    response = requests.get(url, verify)
+    return response.json()
 
-def get_xml_data(url):
-    pass
+def get_xml_data(url, verify=True):
+    response = requests.get(url, verify)
+    tree = ElementTree.fromstring(response.content)
+    return tree
 
 
 if __name__ == '__main__':
