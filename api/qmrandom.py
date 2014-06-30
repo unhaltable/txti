@@ -66,6 +66,6 @@ getrandbits = _inst.getrandbits
 
 if __name__ == "__main__":
     x = qmrandom()
-    for i in range(100):
-        print(x.randint(0, 100))
+    for i in range(4):
+        print(x.randint(1, 16))
 
